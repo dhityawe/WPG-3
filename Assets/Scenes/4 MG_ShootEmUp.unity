@@ -854,7 +854,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 48
   m_CollisionDetection: 0
 --- !u!65 &1440191473
 BoxCollider:
@@ -871,7 +871,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -923,7 +923,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.6, y: 9.6}
+  m_Size: {x: 1.875, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -941,8 +941,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4cc033c5278def43a9e606dcb7578a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manouverSpeed: 0
-  pathManager: {fileID: 0}
+  moveSpeed: 10
+  xBounds: 2
+  minY: 1
+  maxY: 2
+  laneDistance: 2
 --- !u!1 &1539237700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,20 +1187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e64eb3242f52b41917f56a2ae42895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathline:
-  - x: -2
-    y: 0
-  - x: 0
-    y: 0
-  - x: 2
-    y: 0
-  - x: -2
-    y: 2
-  - x: 0
-    y: 2
-  - x: 2
-    y: 2
-  currentPathlinePoint: 0
 --- !u!4 &1996394942
 Transform:
   m_ObjectHideFlags: 0
