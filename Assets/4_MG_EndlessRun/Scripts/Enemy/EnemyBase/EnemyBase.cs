@@ -2,11 +2,43 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public float moveSpeed = 10.0f;  // Increased speed for faster transition
-    public float xBounds = 2.0f;     // Boundaries for X-axis (-2 to 2)
-    public float minY = 1.0f;        // Minimum Y boundary (1)
-    public float maxY = 2.0f;        // Maximum Y boundary (2)
-    public float laneDistance = 2.0f; // Distance between lanes (horizontal and vertical)
+    public string enemyName;
+    public string rarity;
+    public int price;
+    public Sprite sprite;
+
+    [Header("Enemy Stats")]
+
+    [Header("Stats Health")]
+    public float enemyHealth;
+
+    [Header("Stats Movement")]
+    public float enemyMoveSpeed;
+    public float enemyMoveCd;
+
+    [Header("Stats Attack")]
+    public float attackKnockback;
+    public float attackInterval;
+
 
     public FishBase fishBase; // Reference to the FishBase script
+
+    private void Awake()
+    {
+        DataInitialisation();
+    }
+
+    private void DataInitialisation()
+    {
+        enemyName = fishBase.fishName;
+        rarity = fishBase.rarity.ToString();
+        price = fishBase.price;
+        sprite = fishBase.sprite;
+
+        enemyHealth = fishBase.enemyHealth;
+        enemyMoveSpeed = fishBase.enemyMoveSpeed;
+        enemyMoveCd = fishBase.enemyMoveCd;
+        attackKnockback = fishBase.attackKnockback;
+        attackInterval = fishBase.attackInterval;
+    }
 }
