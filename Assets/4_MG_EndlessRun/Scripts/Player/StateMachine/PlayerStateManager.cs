@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
     IPlayerState currentState;
-
+    
+    // Actions states
     public BulletShootState bulletShootState = new BulletShootState();
     public HookShotState hookShotState = new HookShotState();
     public ReloadState reloadState = new ReloadState();

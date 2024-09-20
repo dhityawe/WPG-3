@@ -1321,10 +1321,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1317081092}
+  - component: {fileID: 1317081090}
   - component: {fileID: 1317081091}
   - component: {fileID: 1317081094}
   - component: {fileID: 1317081093}
-  - component: {fileID: 1317081090}
   - component: {fileID: 1317081089}
   m_Layer: 0
   m_Name: Fish
@@ -1395,7 +1395,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 463f412a5d64130498df6ad117bb3147, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6d4df2dfc0f27a48ad3a01d0a6d3330, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1486,6 +1486,8 @@ MonoBehaviour:
   enemyMoveCd: 0
   attackKnockback: 0
   attackInterval: 0
+  enemyPosition: {fileID: 0}
+  enemyBulletPrefab: {fileID: 0}
   fishBase: {fileID: 11400000, guid: 743fdbf0b9bfb3d468307ef5e9748b4f, type: 2}
 --- !u!1 &1366363330
 GameObject:
@@ -1527,12 +1529,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440191470}
+  - component: {fileID: 1440191474}
+  - component: {fileID: 1440191472}
+  - component: {fileID: 1440191473}
   - component: {fileID: 1440191477}
   - component: {fileID: 1440191476}
   - component: {fileID: 1440191475}
-  - component: {fileID: 1440191472}
-  - component: {fileID: 1440191474}
-  - component: {fileID: 1440191473}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1555,6 +1557,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   - {fileID: 452964694}
+  - {fileID: 1694943302091655842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1440191472
@@ -1646,7 +1649,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 463f412a5d64130498df6ad117bb3147, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65dba7648b620c64c93b30a54fc7f745, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1700,10 +1703,13 @@ MonoBehaviour:
   price: 0
   sprite: {fileID: 0}
   MoveSpeed: 0
-  bulletPullPower: 0
-  projectileSpeed: 0
+  bulletSpeed: 0
+  bulletAmmo: 0
+  ReloadBulletCd: 0
   hookShotCd: 0
-  ReloadCd: 0
+  hookShotAmmo: 0
+  ReloadHookCd: 0
+  bulletPrefab: {fileID: 0}
   fishingRodBase: {fileID: 11400000, guid: 4085b18ef1a51d4469856aed1d691f16, type: 2}
 --- !u!1 &1539237700
 GameObject:
@@ -2036,6 +2042,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069810984}
   m_CullTransparentMesh: 1
+--- !u!1001 &1694943302091655841
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1440191470}
+    m_Modifications:
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026160320880253091, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+      propertyPath: m_Name
+      value: EnemyBullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+--- !u!4 &1694943302091655842 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1305932206277301836, guid: b2e878146b8caf745b041f83e86f2fcb, type: 3}
+  m_PrefabInstance: {fileID: 1694943302091655841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

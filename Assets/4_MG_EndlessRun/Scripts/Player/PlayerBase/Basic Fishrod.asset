@@ -18,7 +18,7 @@ MonoBehaviour:
   price: 100
   sprite: {fileID: 0}
   MoveSpeed: 10
-  bulletPullPower: 2
-  projectileSpeed: 5
+  bulletSpeed: 3
+  bulletMagazine: 2
   hookShotCd: 6
   ReloadCd: 3

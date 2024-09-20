@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor.Sprites;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
@@ -20,7 +22,9 @@ public class EnemyBase : MonoBehaviour
     public float attackKnockback;
     public float attackInterval;
 
-
+    [Header("Reference")]
+    public Transform enemyPosition; // Reference to the enemy position
+    public GameObject enemyBulletPrefab; // Reference to the enemy bullet prefab
     public FishBase fishBase; // Reference to the FishBase script
 
     private void Awake()
@@ -28,6 +32,22 @@ public class EnemyBase : MonoBehaviour
         DataInitialisation();
     }
 
+    public void Update()
+    {
+        // get the enemy position from this gameObject
+        enemyPosition = this.transform;
+
+    }
+
+    public void ShootCooldown()
+    {
+        StartCoroutine(ReloadEnemyBullet());
+    }
+
+    private IEnumerator ReloadEnemyBullet()
+    {
+        yield return new WaitForSeconds(attackInterval);
+    }
     private void DataInitialisation()
     {
         enemyName = fishBase.fishName;

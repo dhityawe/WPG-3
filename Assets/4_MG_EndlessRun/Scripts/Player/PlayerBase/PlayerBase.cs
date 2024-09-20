@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
@@ -17,11 +15,20 @@ public class PlayerBase : MonoBehaviour
     public float MoveSpeed;
 
     [Header("Stats Shooting")]
-    public float bulletPullPower;
-    public float projectileSpeed;
-    public float hookShotCd;
-    public float ReloadCd;
 
+    [Header("Stats BulletShoot")]
+    // public float bulletPullPower;
+    public float bulletSpeed;
+    public float bulletAmmo;
+    public float ReloadBulletCd;
+
+    [Header("Stats HookShot")]
+    public float hookShotCd;
+    public float hookShotAmmo;
+    public float ReloadHookCd;
+
+    [Header("Stats Reference")]
+    public GameObject bulletPrefab;
     public FishingRodBase fishingRodBase;
 
     void Start()
@@ -37,9 +44,11 @@ public class PlayerBase : MonoBehaviour
         price = fishingRodBase.price;
         sprite = fishingRodBase.sprite;
         MoveSpeed = fishingRodBase.MoveSpeed;
-        bulletPullPower = fishingRodBase.bulletPullPower;
-        projectileSpeed = fishingRodBase.projectileSpeed;
+        bulletSpeed = fishingRodBase.bulletSpeed;
+        bulletAmmo = fishingRodBase.bulletAmmo;
+        ReloadBulletCd = fishingRodBase.ReloadBulletCd;
         hookShotCd = fishingRodBase.hookShotCd;
-        ReloadCd = fishingRodBase.ReloadCd;
+        hookShotAmmo = fishingRodBase.hookShotAmmo;
+        ReloadHookCd = fishingRodBase.ReloadHookCd;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMoveState : MonoBehaviour, IEnemyState
 {
     public float xBounds = 2.0f;      // Boundaries for X-axis (-2 to 2)
     public float minY = 1.0f;         // Minimum Y boundary (1)
@@ -12,16 +12,36 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 targetPosition;   // The position to move towards
 
     public EnemyBase enemyBase;       // Reference to the EnemyBase script
+    
 
-    void Start()
+    public void EnterState(EnemyStateManager enemy)
     {
-        // Set initial target position to the current enemy position
-        targetPosition = transform.position;
+        Debug.Log("Enemy Move State Enter");
+        // Find the EnemyBase component on the enemy GameObject
+        enemyBase = enemy.GetComponent<EnemyBase>();
 
-        // Start the movement coroutine
+        // Set initial target position to the current enemy position
+        targetPosition = enemy.transform.position;
+        
         StartCoroutine(MovementRoutine());
     }
 
+    public void UpdateState(EnemyStateManager enemy)
+    {
+        SmoothMoveToTarget();
+        Debug.Log("Enemy Move State Update");
+    }
+
+    public void ExitState(EnemyStateManager enemy)
+    {
+        Debug.Log("Enemy Move State Exit");
+    }
+
+    private void SmoothMoveToTarget()
+    {
+        // Smoothly move towards the target position with speed using Time.deltaTime for consistent movement
+        transform.position = Vector3.Lerp(transform.position, targetPosition, enemyBase.enemyMoveSpeed * Time.deltaTime);
+    }
     IEnumerator MovementRoutine()
     {
         while (true)
@@ -38,16 +58,5 @@ public class EnemyMovement : MonoBehaviour
             // Set the target position to the new random lane position
             targetPosition = new Vector3(randomX, randomY, transform.position.z);
         }
-    }
-
-    void Update()
-    {
-        SmoothMoveToTarget();
-    }
-
-    private void SmoothMoveToTarget()
-    {
-        // Smoothly move towards the target position with speed using Time.deltaTime for consistent movement
-        transform.position = Vector3.Lerp(transform.position, targetPosition, enemyBase.enemyMoveSpeed * Time.deltaTime);
     }
 }

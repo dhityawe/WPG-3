@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletShootState : IPlayerState
@@ -24,9 +22,14 @@ public class BulletShootState : IPlayerState
         {
             player.SwitchState(player.hookShotState);
         }
-        else if (Input.GetKeyDown(KeyCode.R)) // Example: Switch to Reload state
+
+        if (playerBase.bulletAmmo < 1)
         {
             player.SwitchState(player.reloadState);
+        }
+        else if (playerBase.hookShotAmmo < 1)
+        {
+            player.SwitchState(player.hookShotState);
         }
     }
 
