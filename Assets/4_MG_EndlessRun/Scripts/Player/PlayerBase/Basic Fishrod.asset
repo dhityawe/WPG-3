@@ -19,6 +19,11 @@ MonoBehaviour:
   sprite: {fileID: 0}
   MoveSpeed: 10
   bulletSpeed: 3
-  bulletMagazine: 2
-  hookShotCd: 6
-  ReloadCd: 3
+  bulletAmmo: 2
+  ammoCapacity: 0
+  ShootingBulletCd: 1
+  ReloadBulletCd: 2
+  isAnimationRunning: 0
+  isHookShotAble: 1
+  ReloadHookCd: 3
+  bulletPrefab: {fileID: 0}

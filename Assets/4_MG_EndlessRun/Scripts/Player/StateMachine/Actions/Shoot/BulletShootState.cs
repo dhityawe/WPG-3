@@ -23,11 +23,11 @@ public class BulletShootState : IPlayerState
             player.SwitchState(player.hookShotState);
         }
 
-        if (playerBase.bulletAmmo < 1)
-        {
-            player.SwitchState(player.reloadState);
-        }
-        else if (playerBase.hookShotAmmo < 1)
+        // if (playerBase.bulletAmmo < 1)
+        // {
+        //     player.SwitchState(player.reloadState);
+        // }
+        if (playerBase.isHookShotAble == false)
         {
             player.SwitchState(player.hookShotState);
         }

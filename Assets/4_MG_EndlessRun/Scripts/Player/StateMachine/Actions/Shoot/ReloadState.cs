@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ReloadState : IPlayerState
 {
-    private float reloadTime = 2.0f; // Example: 2 seconds to reload
+    private float reloadBulletTime = 2.0f; // Example: 2 seconds to reload
+    private float reloadHookTime = 3.0f; // Example: 3 seconds to reload
     private PlayerBase playerBase; // Reference to the PlayerBase component
 
     public void EnterState(PlayerStateManager player)
@@ -12,14 +13,25 @@ public class ReloadState : IPlayerState
         // Find the PlayerBase component on the player GameObject
         playerBase = player.GetComponent<PlayerBase>();
 
+        InitializeReloadCdStats();
+
         Debug.Log("Entered Reload State");
         // Start reloading animation or timer
     }
 
     public void UpdateState(PlayerStateManager player)
     {
-        player.StartCoroutine(ReloadCoroutine(player));
+        if (playerBase.bulletAmmo == 0)
+        {
+        player.StartCoroutine(ReloadBulletCoroutine(player));
         Debug.Log("Reloading");
+        }
+
+        if (!playerBase.isHookShotAble)
+        {
+        player.StartCoroutine(ReloadHookCoroutine(player));
+        Debug.Log("Reloading Hook");
+        }
 
     }
 
@@ -28,9 +40,23 @@ public class ReloadState : IPlayerState
         Debug.Log("Exiting Reload State");
     }
 
-    private IEnumerator ReloadCoroutine(PlayerStateManager player)
+    void InitializeReloadCdStats()
     {
-        yield return new WaitForSeconds(reloadTime);
+        reloadBulletTime = playerBase.ReloadBulletCd;
+        reloadHookTime = playerBase.ReloadHookCd;
+    }
+
+    private IEnumerator ReloadBulletCoroutine(PlayerStateManager player)
+    {
+        yield return new WaitForSeconds(reloadBulletTime);
         player.SwitchState(player.bulletShootState); // Return to Bullet Shoot after reload
+    }
+
+    private IEnumerator ReloadHookCoroutine(PlayerStateManager player)
+    {
+        Debug.Log("Reloading Bullet Coroutine Started"); 
+        yield return new WaitForSeconds(reloadHookTime);
+        playerBase.isHookShotAble = true;
+        player.SwitchState(player.hookShotState); // Return to Hook Shot after reload
     }
 }

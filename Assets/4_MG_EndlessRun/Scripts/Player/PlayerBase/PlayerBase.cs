@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
+    [Header("Fishing Rod Stats Base")]
+    public FishingRodBase fishingRodBase;
+
     [Header("Stats General")]
     public string rodName;
     public Rarity rarity;
@@ -14,26 +17,35 @@ public class PlayerBase : MonoBehaviour
     [Header("Stats Movement")]
     public float MoveSpeed;
 
-    [Header("Stats Shooting")]
-
     [Header("Stats BulletShoot")]
     // public float bulletPullPower;
     public float bulletSpeed;
     public float bulletAmmo;
+    public float ammoCapacity;
+    public float ShootingBulletCd;
     public float ReloadBulletCd;
 
     [Header("Stats HookShot")]
-    public float hookShotCd;
-    public float hookShotAmmo;
+    public bool isAnimationRunning;
+    public bool isHookShotAble;
     public float ReloadHookCd;
 
     [Header("Stats Reference")]
+    public GameObject currentHookObject;
     public GameObject bulletPrefab;
-    public FishingRodBase fishingRodBase;
 
     void Start()
     {
+        // Get the current GameObject's reference
+        currentHookObject = this.gameObject;
+
+        InitializePlayerBase();
+    }
+    
+    public void InitializePlayerBase()
+    {
         InitializeStats();
+        IntializeAmmoCapacity();
     }
 
     public void InitializeStats()
@@ -47,8 +59,13 @@ public class PlayerBase : MonoBehaviour
         bulletSpeed = fishingRodBase.bulletSpeed;
         bulletAmmo = fishingRodBase.bulletAmmo;
         ReloadBulletCd = fishingRodBase.ReloadBulletCd;
-        hookShotCd = fishingRodBase.hookShotCd;
-        hookShotAmmo = fishingRodBase.hookShotAmmo;
+        isHookShotAble = fishingRodBase.isHookShotAble;
         ReloadHookCd = fishingRodBase.ReloadHookCd;
+        bulletPrefab = fishingRodBase.bulletPrefab;
+    }
+
+    public void IntializeAmmoCapacity()
+    {
+        ammoCapacity = bulletAmmo;
     }
 }
