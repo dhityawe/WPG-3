@@ -1,149 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
-public class reelCommon : MonoBehaviour
+public class ReelCommon : reelingBase
 {
-    public GameObject jarum;
-    public float rotationSpeed = 100f;
-    public float damagePerSecond = 10f;
-    public float maxFishHP = 100f;
-    public Slider fishHPSlider;
-    public Image damageAreaImage; // Menggunakan satu Image untuk area damage
-    public float damageColorDuration = 0.5f;
-    public float delayBeforeReactivatingDamageArea = 1f;
-    public Slider timeSlider;
-    public float maxTime = 60f;
-    public Text timeText;
+    public Image damageAreaImage;
 
-    private Image jarumImage;
-    private float fishHP;
-    private Color originalColor;
     private int activeDamageArea;
-    private bool hasDamaged;
-    private float currentTime;
-    private Color originalSliderColor;
 
-    void Start()
+    protected override void ActivateRandomDamageAreas()
     {
-        jarumImage = jarum.GetComponent<Image>();
-        if (jarumImage == null)
-        {
-            Debug.LogError("Tidak ada komponen Image pada GameObject jarum.");
-            return;
-        }
-        originalColor = jarumImage.color;
-
-        fishHP = maxFishHP;
-        if (fishHPSlider != null)
-        {
-            fishHPSlider.maxValue = maxFishHP;
-            fishHPSlider.value = fishHP;
-        }
-
-        if (timeSlider != null)
-        {
-            timeSlider.maxValue = maxTime;
-            timeSlider.value = maxTime;
-            originalSliderColor = timeSlider.fillRect.GetComponent<Image>().color;
-        }
-
-        currentTime = maxTime;
-        if (timeText != null)
-        {
-            timeText.text = FormatTime(currentTime);
-        }
-
-        StartCoroutine(UpdateTimer());
-        ActivateRandomDamageArea();
+        activeDamageArea = UnityEngine.Random.Range(0, 4);
+        SetDamageAreaImage(damageAreaImage, activeDamageArea);
     }
 
-    void Update()
+    protected override void SetDamageAreaImage(Image damageAreaImage, int areaIndex)
     {
-        jarum.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-
-        float currentAngle = jarum.transform.eulerAngles.z;
-        var area = GetAreaAngles(activeDamageArea);
-        bool isInDamageArea = IsAngleInRange(currentAngle, area.startAngle, area.endAngle);
-
-        if (Input.anyKeyDown)
-        {
-            KeyCode correctKey = GetKeyCodeForArea(activeDamageArea);
-            if (isInDamageArea && Input.GetKeyDown(correctKey) && !hasDamaged)
-            {
-                fishHP -= damagePerSecond;
-                fishHP = Mathf.Max(fishHP, 0);
-                if (fishHPSlider != null)
-                {
-                    fishHPSlider.value = fishHP;
-                }
-
-                hasDamaged = true;
-                damageAreaImage.gameObject.SetActive(false);
-                StartCoroutine(ChangeNeedleColorBriefly());
-                StartCoroutine(ReactivateDamageAreaAfterDelay());
-            }
-            else
-            {
-                // Mengurangi waktu sebanyak 3 detik jika ada kesalahan
-                currentTime -= 3f;
-                currentTime = Mathf.Max(currentTime, 0);
-                if (timeSlider != null)
-                {
-                    timeSlider.value = currentTime;
-                }
-                if (timeText != null)
-                {
-                    timeText.text = FormatTime(currentTime);
-                }
-                StartCoroutine(ShowErrorEffect());
-            }
-        }
-
-        if (!isInDamageArea)
-        {
-            hasDamaged = false;
-        }
+        damageAreaImage.gameObject.SetActive(true);
+        damageAreaImage.fillAmount = 0.25f;
+        var area = GetAreaAngles(areaIndex);
+        damageAreaImage.transform.rotation = Quaternion.Euler(0, 0, area.startAngle + 90f);
     }
 
-    private IEnumerator UpdateTimer()
-    {
-        while (currentTime > 0)
-        {
-            currentTime -= Time.deltaTime;
-            currentTime = Mathf.Max(currentTime, 0);
-
-            if (timeSlider != null)
-            {
-                timeSlider.value = currentTime;
-            }
-
-            if (timeText != null)
-            {
-                timeText.text = FormatTime(currentTime);
-            }
-
-            yield return null;
-        }
-    }
-
-    private bool IsAngleInRange(float angle, float startAngle, float endAngle)
-    {
-        return startAngle < endAngle ? angle >= startAngle && angle <= endAngle : angle >= startAngle || angle <= endAngle;
-    }
-
-private void ActivateRandomDamageArea()
-{
-    activeDamageArea = UnityEngine.Random.Range(0, 4); // 0: Kanan, 1: Atas, 2: Kiri, 3: Bawah
-    damageAreaImage.gameObject.SetActive(true);
-    damageAreaImage.fillAmount = 0.25f; // Set fill amount to 0.25
-    // Mengubah rotasi area damage berdasarkan area yang aktif
-    var area = GetAreaAngles(activeDamageArea);
-    damageAreaImage.transform.rotation = Quaternion.Euler(0, 0, area.startAngle);
-}
-
-    private (float startAngle, float endAngle) GetAreaAngles(int index)
+    protected override (float startAngle, float endAngle) GetAreaAngles(int index)
     {
         return index switch
         {
@@ -155,80 +35,25 @@ private void ActivateRandomDamageArea()
         };
     }
 
-    private KeyCode GetKeyCodeForArea(int index)
+    protected override KeyCode[] GetKeyCodeForArea(int index)
     {
         return index switch
         {
-            0 => KeyCode.RightArrow,
-            1 => KeyCode.UpArrow,
-            2 => KeyCode.LeftArrow,
-            3 => KeyCode.DownArrow,
-            _ => KeyCode.None,
+            0 => new KeyCode[] { KeyCode.UpArrow },
+            1 => new KeyCode[] { KeyCode.LeftArrow },
+            2 => new KeyCode[] { KeyCode.DownArrow },
+            3 => new KeyCode[] { KeyCode.RightArrow },
+            _ => new KeyCode[] { KeyCode.None },
         };
     }
 
-    private IEnumerator ReactivateDamageAreaAfterDelay()
+    protected override void DeactivateDamageArea(int index)
     {
-        yield return new WaitForSeconds(delayBeforeReactivatingDamageArea);
-        ActivateRandomDamageArea();
+        damageAreaImage.gameObject.SetActive(false);
     }
 
-    private IEnumerator ChangeNeedleColorBriefly()
+    protected override List<int> GetActiveDamageAreas()
     {
-        if (jarumImage != null)
-        {
-            jarumImage.color = Color.red;
-        }
-
-        yield return new WaitForSeconds(damageColorDuration);
-
-        if (jarumImage != null)
-        {
-            jarumImage.color = originalColor;
-        }
-    }
-
-    private IEnumerator ShowErrorEffect()
-    {
-        // Mengubah warna slider menjadi merah
-        if (timeSlider != null)
-        {
-            var sliderImage = timeSlider.fillRect.GetComponent<Image>();
-            sliderImage.color = Color.red;
-        }
-
-        // Efek getar
-        Vector3 originalPosition = timeSlider.transform.position;
-        float shakeDuration = 0.2f;
-        float shakeMagnitude = 5f;
-        float elapsed = 0f;
-
-        while (elapsed < shakeDuration)
-        {
-            float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
-
-            timeSlider.transform.position = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        timeSlider.transform.position = originalPosition;
-
-        // Mengembalikan warna slider ke warna asli
-        yield return new WaitForSeconds(0.5f);
-        if (timeSlider != null)
-        {
-            var sliderImage = timeSlider.fillRect.GetComponent<Image>();
-            sliderImage.color = originalSliderColor;
-        }
-    }
-
-    private string FormatTime(float time)
-    {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-        return string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+        return new List<int> { activeDamageArea };
     }
 }
