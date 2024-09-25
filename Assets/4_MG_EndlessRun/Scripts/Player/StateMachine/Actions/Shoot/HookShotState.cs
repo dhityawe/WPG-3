@@ -8,34 +8,38 @@ public class HookShotState : IPlayerState
     private GameObject currentHookObject;
     private PlayerBase playerBase; // Reference to the PlayerBase component
 
+    private Coroutine hookShotCoroutine; // To keep track of the coroutine
+
     public void EnterState(PlayerStateManager player)
     {
-        // Find the PlayerBase component on the player GameObject
         playerBase = player.GetComponent<PlayerBase>();
-
-        // Get the current Hook Object
         currentHookObject = playerBase.currentHookObject;
-
         Debug.Log("Entered Hook Shot State");
     }
 
     public void UpdateState(PlayerStateManager player)
     {
-        // Handle hook shot logic here
-        if (Input.GetKeyDown(KeyCode.B)) // Example: Switch to BulletShoot state
+        if (Input.GetKeyDown(KeyCode.B)) // Switch to BulletShoot state
         {
             player.SwitchState(player.bulletShootState);
         }
 
-        if (playerBase.isAnimationRunning == false && playerBase.isHookShotAble && Input.GetKeyDown(KeyCode.Space)) // Input for shooting the hook
+        if (!playerBase.isAnimationRunning && playerBase.isHookShotAble && Input.GetKeyDown(KeyCode.Space))
         {
+            // Stop any existing coroutines (if necessary)
+            if (hookShotCoroutine != null)
+            {
+                playerBase.StopCoroutine(hookShotCoroutine);
+            }
+
             // Disable hook shot ability and start the hook shot coroutine
-            playerBase.isAnimationRunning = true;
             playerBase.isHookShotAble = false;
-            player.StartCoroutine(SmoothMoveHook(player));
-            Debug.Log("Hook Shot Fired");
+            playerBase.isAnimationRunning = true;
+
+            hookShotCoroutine = player.StartCoroutine(SmoothMoveHook(player));  // Store the coroutine
+            Debug.Log("Hook Shot Fired, isHookShotAble: " + playerBase.isHookShotAble);
         }
-        else if (playerBase.isAnimationRunning == true && !playerBase.isHookShotAble)
+        else if (playerBase.isAnimationRunning && !playerBase.isHookShotAble)
         {
             Debug.Log("Still HookShot animation, can't move");
         }
@@ -43,11 +47,16 @@ public class HookShotState : IPlayerState
 
     public void ExitState(PlayerStateManager player)
     {
+        // Stop any running coroutine when exiting the state to avoid overlap
+        if (hookShotCoroutine != null)
+        {
+            playerBase.StopCoroutine(hookShotCoroutine);
+        }
         Debug.Log("Exiting Hook Shot State");
     }
 
     // Coroutine for moving the hook forward and then returning it
-    IEnumerator SmoothMoveHook(PlayerStateManager player)
+    private IEnumerator SmoothMoveHook(PlayerStateManager player)
     {
         Vector3 startPosition = currentHookObject.transform.position;
         Vector3 targetPosition = new Vector3(startPosition.x, startPosition.y, startPosition.z + hookShotDistance);
@@ -55,23 +64,23 @@ public class HookShotState : IPlayerState
         // Move forward
         yield return playerBase.StartCoroutine(SmoothMove(currentHookObject.transform, targetPosition));
 
-        // Wait for hook to stay extended (hookShotAnimationTime)
+        // Wait for hook to stay extended
         yield return new WaitForSeconds(hookShotAnimationTime);
 
         // Move back
         yield return playerBase.StartCoroutine(SmoothMove(currentHookObject.transform, startPosition));
 
-        playerBase.isAnimationRunning = false; // Reset the animation flag
-        Debug.Log("Hook Shot Animation Complete");
+        playerBase.isAnimationRunning = false; // Reset animation flag
+        Debug.Log("Hook Shot Animation Complete, isAnimationRunning: " + playerBase.isAnimationRunning);
 
         player.SwitchState(player.reloadState); // Switch to reload state
     }
 
     // Coroutine to smoothly move an object to a target position
-    IEnumerator SmoothMove(Transform objTransform, Vector3 targetPosition)
+    private IEnumerator SmoothMove(Transform objTransform, Vector3 targetPosition)
     {
         float elapsedTime = 0;
-        float totalTime = 0.3f; // Adjust the total time it takes to complete the movement (can be based on speed)
+        float totalTime = 0.3f; // Adjust total time for movement
 
         Vector3 startPosition = objTransform.position;
 

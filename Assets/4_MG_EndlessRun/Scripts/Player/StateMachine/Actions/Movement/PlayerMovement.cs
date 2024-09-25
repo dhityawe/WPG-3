@@ -58,18 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void SmoothMoveToTarget()
     {
-        // Check if hook shot is not active, then allow movement on the Z-axis
-        if (playerBase.isHookShotAble)
-        {
-            // Lerp towards target position while allowing Z-axis to remain unaffected
-            transform.position = Vector3.Lerp(transform.position, new Vector3(targetPosition.x, targetPosition.y, transform.position.z), moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            // While the hook shot is in progress, don't affect X and Y, only apply the movement on Z-axis if necessary
-            // Assuming currentHookObject or the Player's transform is being handled separately
-            Debug.Log("Player movement paused due to HookShot animation");
-        }
+        // Lerp towards target position while allowing Z-axis to remain unaffected
+        transform.position = Vector3.Lerp(transform.position, new Vector3(targetPosition.x, targetPosition.y, transform.position.z), moveSpeed * Time.deltaTime);
     }
 
 }

@@ -1531,14 +1531,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1440191470}
   - component: {fileID: 1440191474}
+  - component: {fileID: 1440191477}
   - component: {fileID: 1440191472}
   - component: {fileID: 1440191473}
-  - component: {fileID: 1440191477}
   - component: {fileID: 1440191476}
   - component: {fileID: 1440191475}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1709,6 +1709,7 @@ MonoBehaviour:
   ammoCapacity: 0
   ShootingBulletCd: 0
   ReloadBulletCd: 0
+  isAnimationRunning: 0
   isHookShotAble: 0
   ReloadHookCd: 0
   currentHookObject: {fileID: 0}

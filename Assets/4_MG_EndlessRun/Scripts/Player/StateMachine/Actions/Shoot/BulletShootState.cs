@@ -5,7 +5,7 @@ public class BulletShootState : IPlayerState
     public float bulletPullPower;
     public float projectileSpeed;
     
-    private PlayerBase playerBase;
+    private PlayerBase playerBase; 
     public void EnterState(PlayerStateManager player)
     {
         // Find the PlayerBase component on the player GameObject
@@ -23,7 +23,7 @@ public class BulletShootState : IPlayerState
             player.SwitchState(player.hookShotState);
         }
 
-        // if (playerBase.bulletAmmo < 1)
+        // if (playerBase.bulletAmmo == 0)
         // {
         //     player.SwitchState(player.reloadState);
         // }

@@ -1,38 +1,35 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReloadState : IPlayerState
 {
-    private float reloadBulletTime = 2.0f; // Example: 2 seconds to reload
-    private float reloadHookTime = 3.0f; // Example: 3 seconds to reload
-    private PlayerBase playerBase; // Reference to the PlayerBase component
+    private float reloadBulletTime = 2.0f;
+    private float reloadHookTime = 3.0f;
+    private PlayerBase playerBase;
 
     public void EnterState(PlayerStateManager player)
     {
-        // Find the PlayerBase component on the player GameObject
         playerBase = player.GetComponent<PlayerBase>();
-
         InitializeReloadCdStats();
-
         Debug.Log("Entered Reload State");
-        // Start reloading animation or timer
-    }
 
-    public void UpdateState(PlayerStateManager player)
-    {
+        // Start reloading bullet or hook, depending on what's needed
         if (playerBase.bulletAmmo == 0)
         {
-        player.StartCoroutine(ReloadBulletCoroutine(player));
-        Debug.Log("Reloading");
+            player.StartCoroutine(ReloadBulletCoroutine(player));
+            Debug.Log("Reloading Bullet");
         }
 
         if (!playerBase.isHookShotAble)
         {
-        player.StartCoroutine(ReloadHookCoroutine(player));
-        Debug.Log("Reloading Hook");
+            player.StartCoroutine(ReloadHookCoroutine(player));
+            Debug.Log("Reloading Hook");
         }
+    }
 
+    public void UpdateState(PlayerStateManager player)
+    {
+        // No need to constantly check here, logic is handled in coroutines
     }
 
     public void ExitState(PlayerStateManager player)
@@ -40,7 +37,7 @@ public class ReloadState : IPlayerState
         Debug.Log("Exiting Reload State");
     }
 
-    void InitializeReloadCdStats()
+    private void InitializeReloadCdStats()
     {
         reloadBulletTime = playerBase.ReloadBulletCd;
         reloadHookTime = playerBase.ReloadHookCd;
@@ -54,9 +51,10 @@ public class ReloadState : IPlayerState
 
     private IEnumerator ReloadHookCoroutine(PlayerStateManager player)
     {
-        Debug.Log("Reloading Bullet Coroutine Started"); 
+        Debug.Log("Reloading Hook Coroutine Started");
         yield return new WaitForSeconds(reloadHookTime);
         playerBase.isHookShotAble = true;
+        Debug.Log("Hook is reloaded, isHookShotAble: " + playerBase.isHookShotAble);
         player.SwitchState(player.hookShotState); // Return to Hook Shot after reload
     }
 }
