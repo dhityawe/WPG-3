@@ -18,7 +18,13 @@ MonoBehaviour:
   price: 100
   sprite: {fileID: 0}
   MoveSpeed: 10
-  bulletSpeed: 3
-  bulletMagazine: 2
-  hookShotCd: 6
-  ReloadCd: 3
+  bulletPullDistance: 1
+  bulletSpeed: 20
+  bulletAmmo: 2
+  ammoCapacity: 0
+  shootingBulletCd: 1
+  reloadBulletCd: 3
+  isAnimationRunning: 0
+  isHookShotAble: 1
+  reloadHookCd: 3
+  bulletPrefab: {fileID: 6139054840821474753, guid: 45c6b8b768dbdd84e8029723d24366cb, type: 3}

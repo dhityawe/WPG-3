@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
+    [Header("Fishing Rod Stats Base")]
+    public FishingRodBase fishingRodBase;
+
     [Header("Stats General")]
     public string rodName;
     public Rarity rarity;
@@ -14,26 +17,37 @@ public class PlayerBase : MonoBehaviour
     [Header("Stats Movement")]
     public float MoveSpeed;
 
-    [Header("Stats Shooting")]
-
     [Header("Stats BulletShoot")]
-    // public float bulletPullPower;
+    public float bulletPullDistance;
     public float bulletSpeed;
     public float bulletAmmo;
-    public float ReloadBulletCd;
+    public float ammoCapacity;
+    public float shootingBulletCd;
+    public float reloadBulletCd;
 
     [Header("Stats HookShot")]
-    public float hookShotCd;
-    public float hookShotAmmo;
-    public float ReloadHookCd;
+    public bool isAnimationRunning;
+    public bool isHookShotAble;
+    public float reloadHookCd;
 
-    [Header("Stats Reference")]
+    [Header("Player Object Reference")]
+    public GameObject currentHookObject;
+
+    [Header("Bullet Object Reference")]
+    public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
-    public FishingRodBase fishingRodBase;
+    public GameObject bulletPool;
 
     void Start()
     {
+        InitializeGameObject();
+        InitializePlayerBase();
+    }
+    
+    public void InitializePlayerBase()
+    {
         InitializeStats();
+        IntializeAmmoCapacity();
     }
 
     public void InitializeStats()
@@ -44,11 +58,25 @@ public class PlayerBase : MonoBehaviour
         price = fishingRodBase.price;
         sprite = fishingRodBase.sprite;
         MoveSpeed = fishingRodBase.MoveSpeed;
+        bulletPullDistance = fishingRodBase.bulletPullDistance;
         bulletSpeed = fishingRodBase.bulletSpeed;
         bulletAmmo = fishingRodBase.bulletAmmo;
-        ReloadBulletCd = fishingRodBase.ReloadBulletCd;
-        hookShotCd = fishingRodBase.hookShotCd;
-        hookShotAmmo = fishingRodBase.hookShotAmmo;
-        ReloadHookCd = fishingRodBase.ReloadHookCd;
+        ammoCapacity = fishingRodBase.ammoCapacity;
+        shootingBulletCd = fishingRodBase.shootingBulletCd;
+        reloadBulletCd = fishingRodBase.reloadBulletCd;
+        isHookShotAble = fishingRodBase.isHookShotAble;
+        reloadHookCd = fishingRodBase.reloadHookCd;
+        bulletPrefab = fishingRodBase.bulletPrefab;
+    }
+
+    public void InitializeGameObject()
+    {
+        currentHookObject = this.gameObject;
+        bulletSpawnPoint = GameObject.Find("BulletSpawnPoint").transform;
+        bulletPool = GameObject.Find("BulletPool");
+    }
+    public void IntializeAmmoCapacity()
+    {
+        ammoCapacity = bulletAmmo;
     }
 }

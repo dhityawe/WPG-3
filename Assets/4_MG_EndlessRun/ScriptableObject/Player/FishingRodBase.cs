@@ -17,22 +17,21 @@ public class FishingRodBase : ScriptableObject
     [Header("Stats Movement")]
     public float MoveSpeed;
 
-    [Header("Stats Shooting")]
-
     [Header("Stats BulletShoot")]
-    // public float bulletPullPower;
+    public float bulletPullDistance;
     public float bulletSpeed;
     public float bulletAmmo;
-    public float ReloadBulletCd;
+    public float ammoCapacity;
+    public float shootingBulletCd;
+    public float reloadBulletCd;
 
     [Header("Stats HookShot")]
-    public float hookShotCd;
-    public float hookShotAmmo;
-    public float ReloadHookCd;
+    public bool isAnimationRunning;
+    public bool isHookShotAble;
+    public float reloadHookCd;
 
-    [Header("Stats Reference")]
+    [Header("Object Reference")]
     public GameObject bulletPrefab;
-    public FishingRodBase fishingRodBase;
 }
 
 public enum Rarity

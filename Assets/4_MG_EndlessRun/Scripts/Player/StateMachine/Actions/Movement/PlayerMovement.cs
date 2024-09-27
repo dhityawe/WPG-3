@@ -6,12 +6,16 @@ public class PlayerMovement : MonoBehaviour
     private float xBounds = 2.0f;     // Boundaries for X-axis (-2 to 2)
     private float minY = 1.0f;        // Minimum Y boundary (1)
     private float maxY = 2.0f;        // Maximum Y boundary (2)
-    private float laneDistance = 2.0f; // Distance between lanes (horizontal and vertical)
+    private float xDistance = 2.0f; // Distance between lanes (horizontal)
+    private float yDistance = 1.0f; // Distance between lanes (vertical)
 
     private Vector3 targetPosition;  // The position to move towards
 
+    private PlayerBase playerBase; // Reference to the PlayerBase component
+
     void Start()
     {
+        playerBase = GetComponent<PlayerBase>();
         // Set initial target position to the starting position (x: 0, y: 1)
         targetPosition = new Vector3(0, 1, transform.position.z);
     }
@@ -24,30 +28,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        // Horizontal lane movement (left/right arrows)
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && targetPosition.x > -xBounds)
+        if (!playerBase.isAnimationRunning)
         {
-            targetPosition += new Vector3(-laneDistance, 0, 0); // Move left
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && targetPosition.x < xBounds)
-        {
-            targetPosition += new Vector3(laneDistance, 0, 0); // Move right
-        }
+            // Horizontal lane movement (left/right arrows)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && targetPosition.x > -xBounds)
+            {
+                targetPosition += new Vector3(-xDistance, 0, 0); // Move left
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && targetPosition.x < xBounds)
+            {
+                targetPosition += new Vector3(xDistance, 0, 0); // Move right
+            }
 
-        // Vertical lane movement (up/down arrows)
-        if (Input.GetKeyDown(KeyCode.UpArrow) && targetPosition.y < maxY)
-        {
-            targetPosition += new Vector3(0, laneDistance, 0); // Move up
+            // Vertical lane movement (up/down arrows)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && targetPosition.y < maxY)
+            {
+                targetPosition += new Vector3(0, yDistance, 0); // Move up
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && targetPosition.y > minY)
+            {
+                targetPosition += new Vector3(0, -yDistance, 0); // Move down
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && targetPosition.y > minY)
+        else
         {
-            targetPosition += new Vector3(0, -laneDistance, 0); // Move down
+            // If the player is not able to use the hook shot, switch to the reload state
+            Debug.Log("Still HookShot animation, can't move");
         }
     }
 
     private void SmoothMoveToTarget()
     {
-        // Increase moveSpeed for faster smooth transition
-        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        // Lerp towards target position while allowing Z-axis to remain unaffected
+        transform.position = Vector3.Lerp(transform.position, new Vector3(targetPosition.x, targetPosition.y, transform.position.z), moveSpeed * Time.deltaTime);
     }
+
 }
