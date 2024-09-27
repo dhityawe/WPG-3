@@ -18,27 +18,29 @@ public class PlayerBase : MonoBehaviour
     public float MoveSpeed;
 
     [Header("Stats BulletShoot")]
-    // public float bulletPullPower;
+    public float bulletPullDistance;
     public float bulletSpeed;
     public float bulletAmmo;
     public float ammoCapacity;
-    public float ShootingBulletCd;
-    public float ReloadBulletCd;
+    public float shootingBulletCd;
+    public float reloadBulletCd;
 
     [Header("Stats HookShot")]
     public bool isAnimationRunning;
     public bool isHookShotAble;
-    public float ReloadHookCd;
+    public float reloadHookCd;
 
-    [Header("Stats Reference")]
+    [Header("Player Object Reference")]
     public GameObject currentHookObject;
+
+    [Header("Bullet Object Reference")]
+    public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
+    public GameObject bulletPool;
 
     void Start()
     {
-        // Get the current GameObject's reference
-        currentHookObject = this.gameObject;
-
+        InitializeGameObject();
         InitializePlayerBase();
     }
     
@@ -56,14 +58,23 @@ public class PlayerBase : MonoBehaviour
         price = fishingRodBase.price;
         sprite = fishingRodBase.sprite;
         MoveSpeed = fishingRodBase.MoveSpeed;
+        bulletPullDistance = fishingRodBase.bulletPullDistance;
         bulletSpeed = fishingRodBase.bulletSpeed;
         bulletAmmo = fishingRodBase.bulletAmmo;
-        ReloadBulletCd = fishingRodBase.ReloadBulletCd;
+        ammoCapacity = fishingRodBase.ammoCapacity;
+        shootingBulletCd = fishingRodBase.shootingBulletCd;
+        reloadBulletCd = fishingRodBase.reloadBulletCd;
         isHookShotAble = fishingRodBase.isHookShotAble;
-        ReloadHookCd = fishingRodBase.ReloadHookCd;
+        reloadHookCd = fishingRodBase.reloadHookCd;
         bulletPrefab = fishingRodBase.bulletPrefab;
     }
 
+    public void InitializeGameObject()
+    {
+        currentHookObject = this.gameObject;
+        bulletSpawnPoint = GameObject.Find("BulletSpawnPoint").transform;
+        bulletPool = GameObject.Find("BulletPool");
+    }
     public void IntializeAmmoCapacity()
     {
         ammoCapacity = bulletAmmo;

@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private float xBounds = 2.0f;     // Boundaries for X-axis (-2 to 2)
     private float minY = 1.0f;        // Minimum Y boundary (1)
     private float maxY = 2.0f;        // Maximum Y boundary (2)
-    private float laneDistance = 2.0f; // Distance between lanes (horizontal and vertical)
+    private float xDistance = 2.0f; // Distance between lanes (horizontal)
+    private float yDistance = 1.0f; // Distance between lanes (vertical)
 
     private Vector3 targetPosition;  // The position to move towards
 
@@ -32,21 +33,21 @@ public class PlayerMovement : MonoBehaviour
             // Horizontal lane movement (left/right arrows)
             if (Input.GetKeyDown(KeyCode.LeftArrow) && targetPosition.x > -xBounds)
             {
-                targetPosition += new Vector3(-laneDistance, 0, 0); // Move left
+                targetPosition += new Vector3(-xDistance, 0, 0); // Move left
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) && targetPosition.x < xBounds)
             {
-                targetPosition += new Vector3(laneDistance, 0, 0); // Move right
+                targetPosition += new Vector3(xDistance, 0, 0); // Move right
             }
 
             // Vertical lane movement (up/down arrows)
             if (Input.GetKeyDown(KeyCode.UpArrow) && targetPosition.y < maxY)
             {
-                targetPosition += new Vector3(0, laneDistance, 0); // Move up
+                targetPosition += new Vector3(0, yDistance, 0); // Move up
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && targetPosition.y > minY)
             {
-                targetPosition += new Vector3(0, -laneDistance, 0); // Move down
+                targetPosition += new Vector3(0, -yDistance, 0); // Move down
             }
         }
         else

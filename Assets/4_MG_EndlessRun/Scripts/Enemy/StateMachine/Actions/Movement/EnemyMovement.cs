@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public float maxY = 2.0f;         // Maximum Y boundary (2)
     public float laneDistance = 2.0f; // Distance between lanes (horizontal and vertical)
 
-    private Vector3 targetPosition;   // The position to move towards
+    public Vector3 targetPosition;   // The position to move towards
 
     public EnemyBase enemyBase;       // Reference to the EnemyBase script
 

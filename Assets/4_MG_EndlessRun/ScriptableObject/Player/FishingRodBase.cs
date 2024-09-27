@@ -18,19 +18,19 @@ public class FishingRodBase : ScriptableObject
     public float MoveSpeed;
 
     [Header("Stats BulletShoot")]
-    // public float bulletPullPower;
+    public float bulletPullDistance;
     public float bulletSpeed;
     public float bulletAmmo;
     public float ammoCapacity;
-    public float ShootingBulletCd;
-    public float ReloadBulletCd;
+    public float shootingBulletCd;
+    public float reloadBulletCd;
 
     [Header("Stats HookShot")]
     public bool isAnimationRunning;
     public bool isHookShotAble;
-    public float ReloadHookCd;
+    public float reloadHookCd;
 
-    [Header("Stats Reference")]
+    [Header("Object Reference")]
     public GameObject bulletPrefab;
 }
 

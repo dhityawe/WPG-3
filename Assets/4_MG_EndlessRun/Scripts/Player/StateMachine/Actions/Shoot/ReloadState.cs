@@ -39,13 +39,16 @@ public class ReloadState : IPlayerState
 
     private void InitializeReloadCdStats()
     {
-        reloadBulletTime = playerBase.ReloadBulletCd;
-        reloadHookTime = playerBase.ReloadHookCd;
+        reloadBulletTime = playerBase.reloadBulletCd;
+        reloadHookTime = playerBase.reloadHookCd;
     }
 
     private IEnumerator ReloadBulletCoroutine(PlayerStateManager player)
     {
+        Debug.Log("Reloading Bullet Coroutine Started");
         yield return new WaitForSeconds(reloadBulletTime);
+        playerBase.bulletAmmo += 1;
+        Debug.Log("Bullet is reloaded, bulletAmmo: " + playerBase.bulletAmmo);
         player.SwitchState(player.bulletShootState); // Return to Bullet Shoot after reload
     }
 
