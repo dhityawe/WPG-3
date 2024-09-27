@@ -11,6 +11,9 @@ public class reelAnomaly : reelingBase
     public Image damageAreaImage2; // Second damage area
     public Image damageAreaImage3; // Third damage area
 
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite invertedSprite;
+
     private List<int> activeDamageAreas = new List<int>();
     private Dictionary<int, Image> damageAreaImageMap = new Dictionary<int, Image>();
     private Dictionary<int, bool> damageAreaTypeMap = new Dictionary<int, bool>(); // true for inverted, false for normal
@@ -51,7 +54,7 @@ public class reelAnomaly : reelingBase
         damageAreaImage.fillAmount = 1f / 8f; // Set fill amount to 1/8
         var area = GetAreaAngles(areaIndex);
         damageAreaImage.transform.rotation = Quaternion.Euler(0, 0, area.startAngle + 45f);
-        damageAreaImage.color = damageAreaTypeMap[areaIndex] ? new Color(0.3686f, 0.3686f, 0.3686f) : Color.red; // Set color based on type
+        damageAreaImage.sprite = damageAreaTypeMap[areaIndex] ? invertedSprite : normalSprite; // Set sprite based on type
     }
 
     protected override (float startAngle, float endAngle) GetAreaAngles(int index)

@@ -11,7 +11,7 @@ public class ReelCommon : reelingBase
 
     protected override void ActivateRandomDamageAreas()
     {
-        activeDamageArea = UnityEngine.Random.Range(0, 4);
+        activeDamageArea = Random.Range(0, 4);
         SetDamageAreaImage(damageAreaImage, activeDamageArea);
     }
 
@@ -50,7 +50,9 @@ public class ReelCommon : reelingBase
     protected override void DeactivateDamageArea(int index)
     {
         damageAreaImage.gameObject.SetActive(false);
+        StartCoroutine(ReactivateDamageAreaAfterDelay());
     }
+
 
     protected override List<int> GetActiveDamageAreas()
     {

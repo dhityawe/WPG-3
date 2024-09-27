@@ -18,6 +18,8 @@ public abstract class reelingBase : MonoBehaviour
     public float maxTime = 60f;
     public Text timeText;
     public Image backgroundImage;
+    public GameObject reelingPanel;
+    public GameObject gachaPanel;
 
     protected Image jarumImage;
     protected float fishHP;
@@ -35,6 +37,9 @@ public abstract class reelingBase : MonoBehaviour
 
     void Start()
     {
+        reelingPanel.SetActive(true);
+        backgroundImage.gameObject.SetActive(true);
+
         jarumImage = jarum.GetComponent<Image>();
         if (jarumImage == null)
         {
@@ -143,6 +148,11 @@ public abstract class reelingBase : MonoBehaviour
         {
             hasDamaged = false;
         }
+
+        if (fishHP <= 0 || currentTime <= 0)
+        {
+            StartCoroutine(StopGame());
+        }
     }
 
     private bool IsCorrectKeyCombinationPressed(int activeDamageArea)
@@ -197,7 +207,7 @@ public abstract class reelingBase : MonoBehaviour
         return startAngle < endAngle ? angle >= startAngle && angle <= endAngle : angle >= startAngle || angle <= endAngle;
     }
 
-    private IEnumerator ReactivateDamageAreaAfterDelay()
+    public IEnumerator ReactivateDamageAreaAfterDelay()
     {
         yield return new WaitForSeconds(delayBeforeReactivatingDamageArea);
         ActivateRandomDamageAreas();
@@ -293,4 +303,19 @@ public abstract class reelingBase : MonoBehaviour
     }
 
     protected abstract List<int> GetActiveDamageAreas();
+
+    private IEnumerator StopGame()
+    {
+        if (fishHP <= 0)
+        {
+            Debug.Log("Game Over! Kamu berhasil menangkap ikan.");
+            reelingPanel.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            gachaPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Game Over! Waktu habis.");
+        }
+    }
 }
