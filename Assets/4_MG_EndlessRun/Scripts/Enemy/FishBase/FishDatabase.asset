@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31f03eb4a6f1614d8a8414ceb634ee8, type: 3}
+  m_Name: FishDatabase
+  m_EditorClassIdentifier: 
+  commonFish:
+  - {fileID: 11400000, guid: 743fdbf0b9bfb3d468307ef5e9748b4f, type: 2}
+  - {fileID: 11400000, guid: e437bf0ecfcaf1846ac13066ab7d4be6, type: 2}
+  - {fileID: 11400000, guid: 87e55e449415e264cb9a4ac020b2051e, type: 2}
+  - {fileID: 11400000, guid: a7bd21c90e6093c4ebcdfafc203bbc89, type: 2}
+  - {fileID: 11400000, guid: 255e3a60589d3f245b0d2da4b14c7a3b, type: 2}
+  - {fileID: 11400000, guid: 048d9c0c76863da47983d7fd661a7834, type: 2}
+  - {fileID: 11400000, guid: aaf4fef20bd9f2543bb7d5be04101453, type: 2}
+  - {fileID: 11400000, guid: 2f04890551ee0c1468a352915f3f1525, type: 2}
+  - {fileID: 11400000, guid: ad90479eadd73234587058adf345f2e6, type: 2}
+  - {fileID: 11400000, guid: dc65641586698d243a5f1f383ce1e8bb, type: 2}
+  uncommonFish:
+  - {fileID: 11400000, guid: c9cd943d88b64ab44bcf68b849719354, type: 2}
+  - {fileID: 11400000, guid: b3e115d598b660940babf1094c8e43ac, type: 2}
+  - {fileID: 11400000, guid: e647f9ff90a2e1647a9fbc503850fa80, type: 2}
+  - {fileID: 11400000, guid: 7f0b63d85c7a9de49899c4b90d1f6d95, type: 2}
+  - {fileID: 11400000, guid: b312d8b6f3e2ff6489a16623a2644380, type: 2}
+  - {fileID: 11400000, guid: 0a88c27467828664e9fe871dcc74f55d, type: 2}
+  - {fileID: 11400000, guid: 29c17a3fc8ae4504590fafb05fa701c3, type: 2}
+  - {fileID: 11400000, guid: 530e17cf3fa5e284c8ab5e9187868ee2, type: 2}
+  - {fileID: 11400000, guid: f1a834d3e8ce93140bb4a95ea022fb63, type: 2}
+  - {fileID: 11400000, guid: ca93478ae31282d47a53e1e11fb9b8a5, type: 2}
+  anomalyFish:
+  - {fileID: 11400000, guid: 785beb36b63a0484e8739a54f57da1bd, type: 2}
+  - {fileID: 11400000, guid: 822c6c6afe711b84e9a39f17978faf6b, type: 2}
+  - {fileID: 11400000, guid: 16697353ea9078e4e9da11743f10ba38, type: 2}
+  - {fileID: 11400000, guid: 16697353ea9078e4e9da11743f10ba38, type: 2}
+  - {fileID: 11400000, guid: dfaa77bf062abfe49a4dbf50e64b1a02, type: 2}
+  - {fileID: 11400000, guid: 739b1cf305245634db42f50a8748a300, type: 2}
+  - {fileID: 11400000, guid: 16f782d3b32a57f40a5c81a55ee038d4, type: 2}
+  - {fileID: 11400000, guid: 1a90d8efa2e7bdd4fb3575baa628c8cd, type: 2}
+  - {fileID: 11400000, guid: fcfcf84a398ccd449a4f140798a58781, type: 2}
+  - {fileID: 11400000, guid: b79a4c518d4443843925ca9f04e6f950, type: 2}
+  bossFish:
+  - {fileID: 11400000, guid: a227ebdbf84947c42b825d2e4d9d2ee8, type: 2}
