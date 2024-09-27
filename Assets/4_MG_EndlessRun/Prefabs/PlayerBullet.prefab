@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 988ce330d488466478fb5c280bf1c271, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c627989cfe5aa14f9c478c7ef9165bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,4 +147,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58e91d71684ee54b88495cc94a5165f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPullDistance: 10

@@ -70,6 +70,15 @@ public class BulletOnHit : MonoBehaviour
             // transform the obstacle set parent
 
         }
+
+        if (other.gameObject.CompareTag("Bound"))
+        {
+            // Bullet hit Bound logic
+
+            Debug.Log("Bullet Bound!");
+            transform.SetParent(playerBase.bulletPool.transform);
+            gameObject.SetActive(false);
+        }
         
     }
 
