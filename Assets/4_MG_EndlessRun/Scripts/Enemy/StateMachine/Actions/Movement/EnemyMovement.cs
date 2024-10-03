@@ -3,50 +3,46 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float xBounds = 2.0f;      // Boundaries for X-axis (-2 to 2)
-    public float minY = 1.0f;         // Minimum Y boundary (1)
-    public float maxY = 2.0f;         // Maximum Y boundary (2)
-    public float laneDistance = 2.0f; // Distance between lanes (horizontal and vertical)
+    public float xBounds = 2.0f;        // Boundaries for X-axis (-2 to 2)
+    public float laneDistance = 2.0f;   // Distance between lanes (horizontal)
+    public Vector3 targetPosition;      // The position to move towards
+    public EnemyBase enemyBase;         // Reference to the EnemyBase script
 
-    public Vector3 targetPosition;   // The position to move towards
-
-    public EnemyBase enemyBase;       // Reference to the EnemyBase script
+    // Discrete Y positions (1 and 3)
+    private readonly float[] possibleYPositions = { 1.0f, 3.0f };
 
     void Start()
     {
-        // Set initial target position to the current enemy position
-        targetPosition = transform.position;
-
-        // Start the movement coroutine
-        StartCoroutine(MovementRoutine());
+        targetPosition = transform.position;  // Set initial target position
+        StartCoroutine(MovementRoutine());    // Start the movement routine
     }
 
     IEnumerator MovementRoutine()
     {
         while (true)
         {
-            // Wait for the specified interval
+            // Wait for the specified cooldown
             yield return new WaitForSeconds(enemyBase.enemyMoveCd);
 
-            // Randomly choose a new lane in the X-axis within bounds
+            // Randomly select a new X position within bounds, snapped to lane distance
             float randomX = Mathf.Round(Random.Range(-xBounds, xBounds) / laneDistance) * laneDistance;
-            
-            // Randomly choose a new lane in the Y-axis within bounds
-            float randomY = Mathf.Round(Random.Range(minY, maxY) / 1) * 1;
 
-            // Set the target position to the new random lane position
+            // Randomly select a new Y position between 1 and 3
+            float randomY = possibleYPositions[Random.Range(0, possibleYPositions.Length)];
+
+            // Set the target position with new X and Y values
             targetPosition = new Vector3(randomX, randomY, transform.position.z);
         }
     }
 
     void Update()
     {
-        SmoothMoveToTarget();
+        SmoothMoveToTarget();  // Handle movement towards the target position
     }
 
     private void SmoothMoveToTarget()
     {
-        // Smoothly move towards the target position with speed using Time.deltaTime for consistent movement
+        // Smoothly move the enemy towards the target position
         transform.position = Vector3.Lerp(transform.position, targetPosition, enemyBase.enemyMoveSpeed * Time.deltaTime);
     }
 }
