@@ -5,13 +5,12 @@ public class EnemyStateManager : MonoBehaviour
     IEnemyState currentState;
     
     // Actions states
-    public EnemyMoveState enemyMoveState = new EnemyMoveState();
     public EnemyAttackState enemyAttackState = new EnemyAttackState();
 
     private void Start()
     {
         // Start with move as the default state
-        currentState = enemyMoveState;
+        currentState = enemyAttackState;
         currentState.EnterState(this);
     }
 

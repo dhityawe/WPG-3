@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8596781158696318383}
   - component: {fileID: 1026041891699255363}
   - component: {fileID: 3495590908692265581}
-  - component: {fileID: 2776647434467350071}
+  - component: {fileID: 3978745717045744213}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -106,7 +106,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.68359375, y: 0.68359375, z: 0.2}
+  m_Size: {x: 0.6835938, y: 0.68359375, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3495590908692265581
 Rigidbody:
@@ -135,7 +135,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &2776647434467350071
+--- !u!114 &3978745717045744213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
