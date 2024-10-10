@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/3 MG_Reeling.unity
+    guid: 6baf5c977b82c544daf2c78176d782b5
+  - enabled: 1
+    path: Assets/Scenes/2 2D_Explore.unity
+    guid: 10604d5d12210b34f92e34e1fe3264a6
   m_configObjects: {}
