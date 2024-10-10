@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro; // Import TMP namespace
 
 public abstract class reelingBase : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public abstract class reelingBase : MonoBehaviour
     public float delayBeforeReactivatingDamageArea = 1f;
     public Slider timeSlider;
     public float maxTime = 60f;
-    public Text timeText;
+    public TMP_Text timeText; // Change Text to TMP_Text
     public Image backgroundImage;
     public GameObject reelingPanel;
     public GameObject gachaPanel;

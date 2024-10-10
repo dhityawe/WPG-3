@@ -1,18 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5.0f;
     public Transform cameraTransform;
+    private Rigidbody rb;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Initialize movement vector
@@ -36,11 +34,20 @@ public class PlayerMovement : MonoBehaviour
             movement += Vector3.right;
         }
 
+        // Normalize the movement vector to prevent faster diagonal movement
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
+
         // Convert movement vector to camera's local space
         movement = cameraTransform.TransformDirection(movement);
         movement.y = 0.0f; // Ensure the player doesn't move vertically
 
-        // Move the player
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
+        // Move the player using Rigidbody.MovePosition
+        if (movement.magnitude > 0)
+        {
+            rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
+        }
     }
 }
