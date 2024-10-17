@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Tambahkan referensi ke SceneManager
 
-public class boatInteract : MonoBehaviour
-{
-    public string sceneName; // Nama scene yang akan dipindahkan
-
-    void Update()
+namespace MG_2DExplore {
+    public class boatInteract : MonoBehaviour
     {
-        // Cek apakah tombol 'E' ditekan
-        if (Input.GetKeyDown(KeyCode.E))
+        public string sceneName; // Nama scene yang akan dipindahkan
+
+        void Update()
         {
-            // Pindah ke scene yang ditentukan
-            SceneManager.LoadScene(sceneName);
+            // Cek apakah tombol 'E' ditekan
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // Pindah ke scene yang ditentukan
+                SceneManager.LoadScene(sceneName);
+            }
         }
     }
 }

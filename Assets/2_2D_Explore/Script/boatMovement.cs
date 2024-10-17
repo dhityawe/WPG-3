@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boatMovement : MonoBehaviour
-{
-    public float speed = 5f;
-    public float rotationSpeed = 200f;
-    private Rigidbody2D rb;
-
-    void Start()
+namespace MG_2DExplore {
+    public class boatMovement : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        public float speed = 5f;
+        public float rotationSpeed = 200f;
+        private Rigidbody2D rb;
 
-    void Update()
-    {
-        float moveInput = Input.GetAxis("Vertical");
-        float rotationInput = Input.GetAxis("Horizontal");
+        void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
 
-        Vector2 moveDirection = transform.up * moveInput * speed * Time.deltaTime;
-        rb.MovePosition(rb.position + moveDirection);
+        void Update()
+        {
+            float moveInput = Input.GetAxis("Vertical");
+            float rotationInput = Input.GetAxis("Horizontal");
 
-        float rotation = rotationInput * rotationSpeed * Time.deltaTime;
-        rb.MoveRotation(rb.rotation - rotation);
+            Vector2 moveDirection = transform.up * moveInput * speed * Time.deltaTime;
+            rb.MovePosition(rb.position + moveDirection);
+
+            float rotation = rotationInput * rotationSpeed * Time.deltaTime;
+            rb.MoveRotation(rb.rotation - rotation);
+        }
     }
 }
