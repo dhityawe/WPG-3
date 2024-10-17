@@ -3,38 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class startFishing : MonoBehaviour
-{
-    private bool isPlayerInCollider = false;
-
-    // Start is called before the first frame update
-    void Start()
+namespace MG_Reeling {
+    public class startFishing : MonoBehaviour
     {
-        
-    }
+        private bool isPlayerInCollider = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isPlayerInCollider && Input.GetKeyDown(KeyCode.E))
+        // Start is called before the first frame update
+        void Start()
         {
-            SceneManager.LoadScene("4 MG_ShootEmUp"); // Ganti "FishingScene" dengan nama scene yang ingin dipindahkan
+            
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        // Update is called once per frame
+        void Update()
         {
-            isPlayerInCollider = true;
+            if (isPlayerInCollider && Input.GetKeyDown(KeyCode.E))
+            {
+                SceneManager.LoadScene("4 MG_ShootEmUp"); // Ganti "FishingScene" dengan nama scene yang ingin dipindahkan
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerEnter(Collider other)
         {
-            isPlayerInCollider = false;
+            if (other.CompareTag("Player"))
+            {
+                isPlayerInCollider = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                isPlayerInCollider = false;
+            }
         }
     }
 }

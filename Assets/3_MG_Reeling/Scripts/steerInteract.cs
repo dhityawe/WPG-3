@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SteerInteract : MonoBehaviour
-{
-    public void Interact()
+namespace MG_Reeling {
+    public class SteerInteract : MonoBehaviour
     {
-        // Logika interaksi
-        Debug.Log("Objek diinteraksi: " + gameObject.name);
-        // Pindah scene
-        SceneManager.LoadScene("2 2D_Explore");
+        public void Interact()
+        {
+            // Logika interaksi
+            Debug.Log("Objek diinteraksi: " + gameObject.name);
+            // Pindah scene
+            SceneManager.LoadScene("2 2D_Explore");
 
+        }
     }
 }
