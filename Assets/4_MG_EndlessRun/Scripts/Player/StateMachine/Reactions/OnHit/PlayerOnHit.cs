@@ -12,5 +12,11 @@ public class PlayerOnHit : MonoBehaviour
             // Use the singleton instance to load the MG_Reeling scene
             SceneLoader.Instance._MGReeling();
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            // Use the singleton instance to load the MG_Reeling scene
+            SceneLoader.Instance._MGReeling();
+        }
     }
 }
