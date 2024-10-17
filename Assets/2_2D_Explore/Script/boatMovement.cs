@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MG_2DExplore {
@@ -8,10 +6,12 @@ namespace MG_2DExplore {
         public float speed = 5f;
         public float rotationSpeed = 200f;
         private Rigidbody2D rb;
+        private Animator animator;
 
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -24,6 +24,10 @@ namespace MG_2DExplore {
 
             float rotation = rotationInput * rotationSpeed * Time.deltaTime;
             rb.MoveRotation(rb.rotation - rotation);
+
+            // Update animation state
+            bool IsMoving = moveInput != 0 || rotationInput != 0;
+            animator.SetBool("IsMoving", IsMoving);
         }
     }
 }
