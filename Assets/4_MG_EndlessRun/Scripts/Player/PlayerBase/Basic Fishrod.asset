@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b859f360ed6947e4ba3434293c668bec, type: 3}
+  m_Name: Basic Fishrod
+  m_EditorClassIdentifier: 
+  rodName: Bamboo Fishing Rod
+  rarity: 0
+  description: Ur average normal fishing rod
+  price: 100
+  sprite: {fileID: 0}
+  MoveSpeed: 10
+  bulletPullDistance: 1
+  bulletSpeed: 20
+  bulletAmmo: 2
+  ammoCapacity: 0
+  shootingBulletCd: 1
+  reloadBulletCd: 1.5
+  isAnimationRunning: 0
+  isHookShotAble: 1
+  reloadHookCd: 3
+  bulletPrefab: {fileID: 6139054840821474753, guid: 45c6b8b768dbdd84e8029723d24366cb, type: 3}
