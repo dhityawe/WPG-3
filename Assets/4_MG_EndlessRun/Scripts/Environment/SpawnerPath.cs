@@ -4,47 +4,49 @@ using UnityEngine;
 
 public class SpawnerPath : MonoBehaviour
 {
-    public GameObject[] objectSpawnToPool; // Array of objects to spawn
+    public GameObject[] pathSpawnToPool; // Array of objects to spawn
 
     [Header("Object Pooling")]
     public GameObject pathPoolParent; // Reference to the object pool parent
     public int poolSize = 10; // Size of the object pool
     private List<GameObject> pathPool; // List to store the pooled objects
 
-    [Header("Spawn Settings")]
-    public float spawnInterval = 4.0f; // Interval between object spawns
-    public GameObject pathParent; // Parent GameObject for the spawned objects
-
     private void Start()
     {
         // Initialize object pool
-        CreateObjectPool();
-
+        CreatePathPool();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Player")) // Ensure the player has the correct tag
+        // Check if the first child of this object has a z position <= -10
+        if (transform.GetChild(0).position.z <= 0)
         {
-            SpawnObject();
+            // Move the first child back to the pool and deactivate it
+            GameObject firstChild = transform.GetChild(0).gameObject;
+            firstChild.transform.SetParent(pathPoolParent.transform);
+            firstChild.SetActive(false);
+
+            // Spawn a new path
+            SpawnPath();
         }
     }
 
-    private void CreateObjectPool()
+    private void CreatePathPool()
     {
         pathPool = new List<GameObject>();
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject pooledObject = InstantiateRandomObject();
+            GameObject pooledObject = InstantiateRandomPath();
             pooledObject.SetActive(false); // Deactivate object initially
-            pathPool.Add(pooledObject);  // Add to pool
+            pathPool.Add(pooledObject); // Add to pool
         }
     }
 
-    private GameObject InstantiateRandomObject()
+    private GameObject InstantiateRandomPath()
     {
-        GameObject objectToSpawn = objectSpawnToPool[Random.Range(0, objectSpawnToPool.Length)];
+        GameObject objectToSpawn = pathSpawnToPool[Random.Range(0, pathSpawnToPool.Length)];
         return Instantiate(objectToSpawn, pathPoolParent.transform);
     }
 
@@ -60,17 +62,20 @@ public class SpawnerPath : MonoBehaviour
         return null; // No available objects
     }
 
-    public void SpawnObject()
+    public void SpawnPath()
     {
         GameObject obj = GetPooledObject();
 
         if (obj != null)
         {
-            // Set the object's position to the spawner's current position
-            obj.transform.position = transform.position;
+            // Set the object's parent to this object
+            obj.transform.SetParent(transform);
 
-            // Set the object's parent to pathParent (using the transform of the GameObject)
-            obj.transform.SetParent(pathParent.transform, true);
+            // Move the object to the last child index position
+            obj.transform.SetSiblingIndex(transform.childCount - 1);
+
+            // Set the object's position
+            obj.transform.position = new Vector3(0, 0f, 372f);
 
             // Activate the object
             obj.SetActive(true);
@@ -80,4 +85,4 @@ public class SpawnerPath : MonoBehaviour
             Debug.LogWarning("No available objects in the pool to spawn.");
         }
     }
-} 
+}

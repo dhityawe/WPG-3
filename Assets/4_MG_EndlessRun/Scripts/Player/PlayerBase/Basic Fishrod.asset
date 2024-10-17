@@ -23,7 +23,7 @@ MonoBehaviour:
   bulletAmmo: 2
   ammoCapacity: 0
   shootingBulletCd: 1
-  reloadBulletCd: 3
+  reloadBulletCd: 1.5
   isAnimationRunning: 0
   isHookShotAble: 1
   reloadHookCd: 3
