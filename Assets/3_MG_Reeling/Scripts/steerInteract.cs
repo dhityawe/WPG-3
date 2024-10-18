@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MG_Reeling {
     public class SteerInteract : MonoBehaviour
@@ -10,9 +9,15 @@ namespace MG_Reeling {
         {
             // Logika interaksi
             Debug.Log("Objek diinteraksi: " + gameObject.name);
-            // Pindah scene
-            SceneManager.LoadScene("2 2D_Explore");
-
+            // Pindah scene menggunakan SceneLoader
+            if (SceneLoader.Instance != null)
+            {
+                SceneLoader.Instance._2DExplore(); // Ganti dengan metode yang sesuai
+            }
+            else
+            {
+                Debug.LogError("SceneLoader tidak ditemukan!");
+            }
         }
     }
 }

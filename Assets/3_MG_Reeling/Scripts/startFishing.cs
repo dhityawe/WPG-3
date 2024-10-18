@@ -19,7 +19,14 @@ namespace MG_Reeling {
         {
             if (isPlayerInCollider && Input.GetKeyDown(KeyCode.E))
             {
-                SceneManager.LoadScene("4 MG_ShootEmUp"); // Ganti "FishingScene" dengan nama scene yang ingin dipindahkan
+                if (SceneLoader.Instance != null)
+            {
+                SceneLoader.Instance._MGEndlessRun(); // Ganti dengan metode yang sesuai
+            }
+            else
+            {
+                Debug.LogError("SceneLoader tidak ditemukan!");
+            }
             }
         }
 
