@@ -7,8 +7,11 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/3 MG_Reeling.unity
-    guid: 6baf5c977b82c544daf2c78176d782b5
+    guid: 11418d4851ba8a34b8800e1f8b9fe06a
+  - enabled: 1
+    path: Assets/Scenes/4 MG_ShootEmUp.unity
+    guid: a73b9aa6ed3ab324aaef5846098c3715
   - enabled: 1
     path: Assets/Scenes/2 2D_Explore.unity
-    guid: 10604d5d12210b34f92e34e1fe3264a6
+    guid: f0d6a4d633d5f25429c5a0357923b8ce
   m_configObjects: {}

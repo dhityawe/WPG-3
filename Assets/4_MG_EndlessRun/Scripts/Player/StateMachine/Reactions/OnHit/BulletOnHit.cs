@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletOnHit : MonoBehaviour
+public class BulletOnHit : MonoBehaviour, IDestroyable
 {
     private PlayerBase playerBase;  // Reference to PlayerBase
 
@@ -24,64 +24,68 @@ public class BulletOnHit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            EnemyMovement enemyMovement = other.GetComponent<EnemyMovement>();
-            if (enemyMovement != null)
-            {
-                // Update the Z position of the targetPosition to pull the enemy smoothly
-                Vector3 newTargetPosition = enemyMovement.targetPosition;
-                newTargetPosition.z += playerBase.bulletPullDistance; // Move forward by bulletPullDistance (e.g. 1 unit)
-                enemyMovement.targetPosition = newTargetPosition; // Update targetPosition for smooth movement
-            }
-
-            Debug.Log("Bullet hit enemy and moved it forward!");
-            transform.SetParent(playerBase.bulletPool.transform);
-            gameObject.SetActive(false);
-
-
+            HandlePlayerCollision(other);
         }
-
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
-            EnemyMovement enemyMovement = other.GetComponent<EnemyMovement>();
-            if (enemyMovement != null)
-            {
-                // Update the Z position of the targetPosition to pull the enemy smoothly
-                Vector3 newTargetPosition = enemyMovement.targetPosition;
-                newTargetPosition.z -= playerBase.bulletPullDistance; // Move forward by bulletPullDistance (e.g. 1 unit)
-                enemyMovement.targetPosition = newTargetPosition; // Update targetPosition for smooth movement
-            }
-
-            Debug.Log("Bullet hit enemy and moved it backward!");
-            transform.SetParent(playerBase.bulletPool.transform);
-            gameObject.SetActive(false);
+            HandleEnemyCollision(other);
         }
-
-        if (other.gameObject.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle"))
         {
-            // Bullet hit obstacle logic
-
-            Debug.Log("Bullet hit obstacle!");
-            transform.SetParent(playerBase.bulletPool.transform);
-            gameObject.SetActive(false);
-
-            // Obstacle hit logic
-            // transform the obstacle set parent
-
+            HandleObstacleCollision();
         }
-
-        if (other.gameObject.CompareTag("Bound"))
+        if (other.CompareTag("Boundary"))
         {
-            // Bullet hit Bound logic
-
-            Debug.Log("Bullet Bound!");
-            transform.SetParent(playerBase.bulletPool.transform);
-            gameObject.SetActive(false);
+            HandleBoundCollision();
         }
-        
     }
 
+    public void DeactivateObject()
+    {
+        // Set the bullet's parent to the bullet pool
+        transform.SetParent(playerBase.bulletPool.transform);
+        gameObject.SetActive(false); // Deactivate the bullet
+    }
 
+    private void HandlePlayerCollision(Collider other)
+    {
+        EnemyMovement enemyMovement = other.GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
+        {
+            Vector3 newTargetPosition = enemyMovement.targetPosition;
+            newTargetPosition.z += playerBase.bulletPullDistance; // Move forward
+            enemyMovement.targetPosition = newTargetPosition; // Update position
+        }
 
+        Debug.Log("Bullet hit enemy and moved it forward!");
+        DeactivateObject(); // Call the DeactivateObject method
+    }
+
+    private void HandleEnemyCollision(Collider other)
+    {
+        EnemyMovement enemyMovement = other.GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
+        {
+            Vector3 newTargetPosition = enemyMovement.targetPosition;
+            newTargetPosition.z -= playerBase.bulletPullDistance; // Move backward
+            enemyMovement.targetPosition = newTargetPosition; // Update position
+        }
+
+        Debug.Log("Bullet hit enemy and moved it backward!");
+        DeactivateObject(); // Call the DeactivateObject method
+    }
+
+    private void HandleObstacleCollision()
+    {
+        Debug.Log("Bullet hit obstacle!");
+        DeactivateObject(); // Call the DeactivateObject method
+    }
+
+    private void HandleBoundCollision()
+    {
+        Debug.Log("Bullet hit Bound!");
+        DeactivateObject(); // Call the DeactivateObject method
+    }
 }

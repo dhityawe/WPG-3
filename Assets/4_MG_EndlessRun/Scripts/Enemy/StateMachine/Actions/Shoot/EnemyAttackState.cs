@@ -30,7 +30,6 @@ public class EnemyAttackState : MonoBehaviour, IEnemyState
 
     void EnemyShooting()
     {
-    
         Debug.Log("Enemy is shooting");
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8596781158696318383}
   - component: {fileID: 1026041891699255363}
   - component: {fileID: 3495590908692265581}
-  - component: {fileID: 2776647434467350071}
+  - component: {fileID: 3978745717045744213}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3c627989cfe5aa14f9c478c7ef9165bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60897ccfc70345743a943e52f894354b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7, y: 7}
+  m_Size: {x: 0.19, y: 0.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -106,7 +106,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.68359375, y: 0.68359375, z: 0.2}
+  m_Size: {x: 0.6835938, y: 0.68359375, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3495590908692265581
 Rigidbody:
@@ -135,7 +135,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &2776647434467350071
+--- !u!114 &3978745717045744213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

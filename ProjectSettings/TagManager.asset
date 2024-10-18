@@ -8,12 +8,13 @@ TagManager:
   - Obstacle
   - EnemyBullet
   - PlayerBullet
-  - Bound
+  - Boundary
+  - SpawnTrigger
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactable
   - Water
   - UI
   - 

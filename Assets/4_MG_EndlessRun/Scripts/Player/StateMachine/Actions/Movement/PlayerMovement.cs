@@ -4,10 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10.0f;  // Increased speed for faster transition
     private float xBounds = 2.0f;     // Boundaries for X-axis (-2 to 2)
-    private float minY = 1.0f;        // Minimum Y boundary (1)
-    private float maxY = 2.0f;        // Maximum Y boundary (2)
     private float xDistance = 2.0f; // Distance between lanes (horizontal)
-    private float yDistance = 1.0f; // Distance between lanes (vertical)
 
     private Vector3 targetPosition;  // The position to move towards
 
@@ -41,13 +38,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Vertical lane movement (up/down arrows)
-            if (Input.GetKeyDown(KeyCode.UpArrow) && targetPosition.y < maxY)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                targetPosition += new Vector3(0, yDistance, 0); // Move up
+                targetPosition = new Vector3(targetPosition.x, 3.0f, targetPosition.z); // Move up to Y = 3
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && targetPosition.y > minY)
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                targetPosition += new Vector3(0, -yDistance, 0); // Move down
+                targetPosition = new Vector3(targetPosition.x, 1.0f, targetPosition.z); // Move down to Y = 1
             }
         }
         else
@@ -56,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Still HookShot animation, can't move");
         }
     }
+
 
     private void SmoothMoveToTarget()
     {
