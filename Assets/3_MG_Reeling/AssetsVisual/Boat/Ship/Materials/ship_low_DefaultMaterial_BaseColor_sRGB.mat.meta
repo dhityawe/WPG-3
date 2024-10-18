@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/3_MG_Reeling/AssetsVisual/Boat/Ship/Materials/ship_low_DefaultMaterial_BaseColor_sRGB.mat.meta
+guid: 08898ec41d382d54297cfd33054096d8
+=======
+<<<<<<<< Updated upstream:Assets/4_MG_EndlessRun/VisualAssets/Materials/kiwi.mat.meta
+guid: 7c543ac0052d824488d352dd9371a625
+========
+guid: 4f68409fc7573584e9f9783aaabb2696
+>>>>>>>> Stashed changes:Assets/MeshCombiner/MeshData/Cube-Collider.asset.meta
+>>>>>>> Stashed changes:Assets/4_MG_EndlessRun/VisualAssets/Materials/kiwi.mat.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
