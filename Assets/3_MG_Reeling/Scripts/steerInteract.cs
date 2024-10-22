@@ -9,6 +9,20 @@ namespace MG_Reeling {
         {
             // Logika interaksi
             Debug.Log("Objek diinteraksi: " + gameObject.name);
+
+            // Simpan posisi dan rotasi sebelum pindah scene
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Camera mainCamera = Camera.main;
+
+            if (player != null && mainCamera != null)
+            {
+                PositionRotationManager.SavePlayerPositionAndRotation(player, mainCamera);
+            }
+            else
+            {
+                Debug.LogError("Player atau Camera tidak ditemukan!");
+            }
+
             // Pindah scene menggunakan SceneLoader
             if (SceneLoader.Instance != null)
             {
