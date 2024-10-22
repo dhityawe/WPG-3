@@ -6,18 +6,22 @@ namespace MG_Reeling {
     public class startReeling : MonoBehaviour
     {
         public GameObject scriptManager;
-        public GameObject reelingPanel;
 
-        public void StartReeling()
+        void Update()
         {
-            scriptManager.SetActive(true);
-            reelingPanel.SetActive(true);
-        }
-
-        public void StopReeling()
-        {
-            scriptManager.SetActive(false);
-            reelingPanel.SetActive(false);
+            // Periksa apakah tombol spasi ditekan
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Aktifkan GameObject
+                if (scriptManager != null)
+                {
+                    scriptManager.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogError("Object to activate is not assigned!");
+                }
+            }
         }
     }
 }

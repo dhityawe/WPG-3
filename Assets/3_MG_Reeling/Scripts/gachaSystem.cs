@@ -13,6 +13,7 @@ namespace MG_Reeling {
             public Sprite fishSprite;
         }
 
+        public GameObject gachaPanel;
         public List<Fish> fishes;
         public float spinDuration = 3.0f;
         public float initialSpinSpeed = 0.1f; // Kecepatan awal
@@ -21,7 +22,6 @@ namespace MG_Reeling {
         public Image leftContainer;
         public Image middleContainer;
         public Image rightContainer;
-        public Button spinButton;
 
         private bool isSpinning = false;
         private float spinTime;
@@ -103,13 +103,14 @@ namespace MG_Reeling {
         {
             // Tambahkan jeda sebelum menentukan hasil
             yield return new WaitForSeconds(1f);
-            DetermineResult();
+            StartCoroutine(DetermineResult());
         }
 
-        private void DetermineResult()
+        private IEnumerator DetermineResult()
         {
-            // Ikan di kontainer tengah adalah hasilnya
-            Debug.Log("You got: " + middleContainer.sprite.name);
+            // Tambahkan jeda sebelum menampilkan hasil
+            yield return new WaitForSeconds(2f);
+            gachaPanel.SetActive(false);
         }
     }
 }
