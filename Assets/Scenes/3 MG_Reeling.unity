@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78f11f43ef5d1d428e3c84e3a8e8166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gachaPanel: {fileID: 0}
   fishes:
   - fishName: tes1
     fishSprite: {fileID: 21300000, guid: 066f908051df833438546569388114b2, type: 3}
@@ -224,7 +225,6 @@ MonoBehaviour:
   leftContainer: {fileID: 2135305883}
   middleContainer: {fileID: 2083601035}
   rightContainer: {fileID: 1459254097}
-  spinButton: {fileID: 0}
 --- !u!4 &77889357
 Transform:
   m_ObjectHideFlags: 0
@@ -1434,7 +1434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptManager: {fileID: 872954212}
-  reelingPanel: {fileID: 2041336269}
 --- !u!4 &827071299
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,7 +1626,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872954212}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b725b14654f6e02429b7493f249cc929, type: 3}
   m_Name: 
@@ -1668,7 +1667,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872954212}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a6a993a9b1d7f48a82a7b9bfb44f57, type: 3}
   m_Name: 
