@@ -30,6 +30,7 @@ namespace MG_Reeling {
         protected Color originalSliderColor;
         protected bool isShaking;
         protected bool hasDamaged;
+        private bool gameEnded = false; // Add this line
 
         protected abstract void ActivateRandomDamageAreas();
         protected abstract void SetDamageAreaImage(Image damageAreaImage, int areaIndex);
@@ -308,6 +309,10 @@ namespace MG_Reeling {
 
         private IEnumerator StopGame()
         {
+            if (gameEnded) yield break; // Add this line
+
+            gameEnded = true; // Add this line
+
             if (fishHP <= 0)
             {
                 Debug.Log("Game Over! Kamu berhasil menangkap ikan.");
