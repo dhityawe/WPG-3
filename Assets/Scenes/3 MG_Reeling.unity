@@ -225,6 +225,7 @@ MonoBehaviour:
   leftContainer: {fileID: 2135305883}
   middleContainer: {fileID: 2083601035}
   rightContainer: {fileID: 1459254097}
+  scriptManager: {fileID: 872954212}
 --- !u!4 &77889357
 Transform:
   m_ObjectHideFlags: 0
@@ -234,11 +235,11 @@ Transform:
   m_GameObject: {fileID: 77889355}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -19.846981}
-  m_LocalScale: {x: 1.5463488, y: 1.5463488, z: 1.5463488}
+  m_LocalPosition: {x: 160, y: 120, z: -7.9387927}
+  m_LocalScale: {x: 0.6185395, y: 0.6185395, z: 0.6185395}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 716347368}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133698136
 GameObject:
@@ -1235,7 +1236,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 77889357}
   - {fileID: 223080227}
   - {fileID: 1459254099}
   - {fileID: 2083601033}
@@ -1612,13 +1612,14 @@ GameObject:
   - component: {fileID: 872954213}
   - component: {fileID: 872954215}
   - component: {fileID: 872954216}
+  - component: {fileID: 872954217}
   m_Layer: 0
   m_Name: Script Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &872954213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,8 +1643,7 @@ MonoBehaviour:
   maxTime: 30
   timeText: {fileID: 948359145}
   backgroundImage: {fileID: 1110653064}
-  reelingPanel: {fileID: 2041336269}
-  gachaPanel: {fileID: 716347367}
+  scriptManager: {fileID: 872954212}
   damageAreaImage: {fileID: 1055641682}
 --- !u!4 &872954214
 Transform:
@@ -1683,8 +1683,7 @@ MonoBehaviour:
   maxTime: 30
   timeText: {fileID: 948359145}
   backgroundImage: {fileID: 1504380798}
-  reelingPanel: {fileID: 2041336269}
-  gachaPanel: {fileID: 716347367}
+  scriptManager: {fileID: 872954212}
   damageAreaImage1: {fileID: 1055641682}
   damageAreaImage2: {fileID: 1592304228}
 --- !u!114 &872954216
@@ -1710,13 +1709,27 @@ MonoBehaviour:
   maxTime: 30
   timeText: {fileID: 948359145}
   backgroundImage: {fileID: 1168757776}
-  reelingPanel: {fileID: 2041336269}
-  gachaPanel: {fileID: 716347367}
+  scriptManager: {fileID: 872954212}
   damageAreaImage1: {fileID: 1055641682}
   damageAreaImage2: {fileID: 1592304228}
   damageAreaImage3: {fileID: 1387604387}
   normalSprite: {fileID: 21300000, guid: dfb0efa52f255e04e976ce811fa6b03f, type: 3}
   invertedSprite: {fileID: 21300000, guid: 0bc21dce4dcde9049889f56650a540a2, type: 3}
+--- !u!114 &872954217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872954212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2410cce6f726216448708de2f377666c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelingPanel: {fileID: 2041336269}
+  gachaPanel: {fileID: 716347367}
+  gachaSystemScript: {fileID: 77889356}
 --- !u!1001 &906181708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4313,6 +4326,7 @@ SceneRoots:
   - {fileID: 1611328611}
   - {fileID: 1075050788}
   - {fileID: 1092592837}
+  - {fileID: 77889357}
   - {fileID: 872954214}
   - {fileID: 683065273}
   - {fileID: 133698138}

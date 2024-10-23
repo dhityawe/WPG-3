@@ -12,15 +12,10 @@ namespace MG_Reeling {
             // Periksa apakah tombol spasi ditekan
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                // Aktifkan GameObject
-                if (scriptManager != null)
-                {
-                    scriptManager.SetActive(true);
-                }
-                else
-                {
-                    Debug.LogError("Object to activate is not assigned!");
-                }
+                // Ambil script state dari scriptManager
+                state stateScript = scriptManager.GetComponent<state>();
+                // Ubah state menjadi reelingState
+                stateScript._reelingState();
             }
         }
     }

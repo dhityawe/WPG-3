@@ -19,10 +19,7 @@ namespace MG_Reeling {
         public Slider timeSlider;
         public float maxTime = 60f;
         public TMP_Text timeText; // Change Text to TMP_Text
-        public Image backgroundImage;
-        public GameObject reelingPanel;
-        public GameObject gachaPanel;
-
+        public Image backgroundImage; // Background image
         protected Image jarumImage;
         protected float fishHP;
         protected Color originalColor;
@@ -32,17 +29,18 @@ namespace MG_Reeling {
         protected bool hasDamaged;
         private bool gameEnded = false; // Add this line
 
+        public Image BackgroundImage => backgroundImage; // Public property to access backgroundImage
+
         protected abstract void ActivateRandomDamageAreas();
         protected abstract void SetDamageAreaImage(Image damageAreaImage, int areaIndex);
         protected abstract (float startAngle, float endAngle) GetAreaAngles(int index);
         protected abstract KeyCode[] GetKeyCodeForArea(int index);
         protected abstract void DeactivateDamageArea(int index);
+        protected abstract List<int> GetActiveDamageAreas();
+        public GameObject scriptManager;
 
         void Start()
         {
-            reelingPanel.SetActive(true);
-            backgroundImage.gameObject.SetActive(true);
-
             jarumImage = jarum.GetComponent<Image>();
             if (jarumImage == null)
             {
@@ -70,9 +68,6 @@ namespace MG_Reeling {
             {
                 timeText.text = FormatTime(currentTime);
             }
-
-            StartCoroutine(UpdateTimer());
-            ActivateRandomDamageAreas();
         }
 
         void Update()
@@ -177,7 +172,7 @@ namespace MG_Reeling {
             return allKeys.Any(key => Input.GetKeyDown(key));
         }
 
-        private IEnumerator UpdateTimer()
+        public IEnumerator UpdateTimer()
         {
             while (currentTime > 0)
             {
@@ -305,8 +300,6 @@ namespace MG_Reeling {
             isShaking = false;
         }
 
-        protected abstract List<int> GetActiveDamageAreas();
-
         private IEnumerator StopGame()
         {
             if (gameEnded) yield break; // Add this line
@@ -316,13 +309,33 @@ namespace MG_Reeling {
             if (fishHP <= 0)
             {
                 Debug.Log("Game Over! Kamu berhasil menangkap ikan.");
-                reelingPanel.SetActive(false);
-                yield return new WaitForSeconds(0.5f);
-                gachaPanel.SetActive(true);
+                state stateScript = scriptManager.GetComponent<state>();
+                if (stateScript != null)
+                {
+                    Debug.Log("Switching to Gacha State...");
+                    StartCoroutine(stateScript._gachaState());
+                }
+                else
+                {
+                    Debug.LogError("State component not found.");
+                }
             }
             else
             {
                 Debug.Log("Game Over! Waktu habis.");
+            }
+        }
+
+        public void PublicActivateRandomDamageAreas()
+        {
+            ActivateRandomDamageAreas();
+        }
+
+        public void DeactivateAllDamageAreas()
+        {
+            foreach (var area in GetActiveDamageAreas())
+            {
+                DeactivateDamageArea(area);
             }
         }
     }

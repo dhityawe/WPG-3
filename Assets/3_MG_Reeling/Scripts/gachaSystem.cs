@@ -27,11 +27,11 @@ namespace MG_Reeling {
         private float spinTime;
         private int currentIndex;
         private float spinSpeed;
+        public GameObject scriptManager;
 
         void Start()
         {
             InitializeContainers();
-            StartSpin();
         }
 
         void Update()
@@ -101,9 +101,12 @@ namespace MG_Reeling {
 
         private IEnumerator StopSpin()
         {
+            state stateScript = scriptManager.GetComponent<state>();
             // Tambahkan jeda sebelum menentukan hasil
             yield return new WaitForSeconds(1f);
             StartCoroutine(DetermineResult());
+            yield return new WaitForSeconds(2f);
+            stateScript._idleState();
         }
 
         private IEnumerator DetermineResult()
