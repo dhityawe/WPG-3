@@ -4,11 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace MG_Reeling {
-    public class GachaSystem : MonoBehaviour
-    {
+    public class GachaSystem : MonoBehaviour {
         [System.Serializable]
-        public class Fish
-        {
+        public class Fish {
             public string fishName;
             public Sprite fishSprite;
         }
@@ -16,9 +14,9 @@ namespace MG_Reeling {
         public GameObject gachaPanel;
         public List<Fish> fishes;
         public float spinDuration = 3.0f;
-        public float initialSpinSpeed = 0.1f; // Kecepatan awal
-        public float finalSpinSpeed = 0.5f; // Kecepatan akhir
-        public float constantSpinDuration = 1.0f; // Durasi spin konstan
+        public float initialSpinSpeed = 0.1f;
+        public float finalSpinSpeed = 0.5f;
+        public float constantSpinDuration = 1.0f;
         public Image leftContainer;
         public Image middleContainer;
         public Image rightContainer;
@@ -27,30 +25,24 @@ namespace MG_Reeling {
         private float spinTime;
         private int currentIndex;
         private float spinSpeed;
-        public GameObject scriptManager;
+        public GameObject stateManager;
 
-        void Start()
-        {
+        void Start() {
             InitializeContainers();
         }
 
-        void Update()
-        {
-            if (isSpinning)
-            {
+        void Update() {
+            if (isSpinning) {
                 spinTime -= Time.deltaTime;
-                if (spinTime <= 0)
-                {
+                if (spinTime <= 0) {
                     isSpinning = false;
                     StartCoroutine(StopSpin());
                 }
             }
         }
 
-        public void StartSpin()
-        {
-            if (!isSpinning)
-            {
+        public void StartSpin() {
+            if (!isSpinning) {
                 spinTime = spinDuration;
                 spinSpeed = initialSpinSpeed;
                 isSpinning = true;
@@ -58,10 +50,8 @@ namespace MG_Reeling {
             }
         }
 
-        private void InitializeContainers()
-        {
-            if (fishes.Count >= 3)
-            {
+        private void InitializeContainers() {
+            if (fishes.Count >= 3) {
                 leftContainer.sprite = fishes[0].fishSprite;
                 middleContainer.sprite = fishes[1].fishSprite;
                 rightContainer.sprite = fishes[2].fishSprite;
@@ -69,51 +59,34 @@ namespace MG_Reeling {
             }
         }
 
-        private IEnumerator MoveSprites()
-        {
+        private IEnumerator MoveSprites() {
             float elapsedTime = 0f;
 
-            while (isSpinning)
-            {
+            while (isSpinning) {
                 yield return new WaitForSeconds(spinSpeed);
 
-                // Geser sprite ikan
                 currentIndex = (currentIndex + 1) % fishes.Count;
                 leftContainer.sprite = middleContainer.sprite;
                 middleContainer.sprite = rightContainer.sprite;
                 rightContainer.sprite = fishes[currentIndex].fishSprite;
 
                 elapsedTime += spinSpeed;
-
-                // Kurangi kecepatan spin setelah durasi konstan
-                if (elapsedTime > constantSpinDuration)
-                {
-                    float t = (elapsedTime - constantSpinDuration) / (spinDuration - constantSpinDuration);
-                    spinSpeed = Mathf.Lerp(initialSpinSpeed, finalSpinSpeed, t);
+                if (elapsedTime > constantSpinDuration) {
+                    spinSpeed = Mathf.Lerp(initialSpinSpeed, finalSpinSpeed, (elapsedTime - constantSpinDuration) / (spinDuration - constantSpinDuration));
                 }
-
-                // Log tambahan untuk memeriksa sprite di setiap kontainer
-                Debug.Log("Left Container: " + leftContainer.sprite.name);
-                Debug.Log("Middle Container: " + middleContainer.sprite.name);
-                Debug.Log("Right Container: " + rightContainer.sprite.name);
             }
         }
 
-        private IEnumerator StopSpin()
-        {
-            state stateScript = scriptManager.GetComponent<state>();
-            // Tambahkan jeda sebelum menentukan hasil
+        private IEnumerator StopSpin() {
             yield return new WaitForSeconds(1f);
             StartCoroutine(DetermineResult());
             yield return new WaitForSeconds(2f);
-            stateScript._idleState();
+            StateManager stateManager = this.stateManager.GetComponent<StateManager>();
+            stateManager.SwitchToIdleState();
         }
 
-        private IEnumerator DetermineResult()
-        {
-            // Tambahkan jeda sebelum menampilkan hasil
+        private IEnumerator DetermineResult() {
             yield return new WaitForSeconds(2f);
-            gachaPanel.SetActive(false);
         }
     }
 }

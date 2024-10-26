@@ -37,7 +37,7 @@ namespace MG_Reeling {
         protected abstract KeyCode[] GetKeyCodeForArea(int index);
         protected abstract void DeactivateDamageArea(int index);
         protected abstract List<int> GetActiveDamageAreas();
-        public GameObject scriptManager;
+        public StateManager stateManager; // Add reference to StateManager
 
         void Start()
         {
@@ -302,27 +302,34 @@ namespace MG_Reeling {
 
         private IEnumerator StopGame()
         {
-            if (gameEnded) yield break; // Add this line
+            if (gameEnded) yield break;
 
-            gameEnded = true; // Add this line
+            gameEnded = true;
 
             if (fishHP <= 0)
             {
                 Debug.Log("Game Over! Kamu berhasil menangkap ikan.");
-                state stateScript = scriptManager.GetComponent<state>();
-                if (stateScript != null)
+                if (stateManager != null)
                 {
                     Debug.Log("Switching to Gacha State...");
-                    StartCoroutine(stateScript._gachaState());
+                    stateManager.SwitchToGachaState();
                 }
                 else
                 {
-                    Debug.LogError("State component not found.");
+                    Debug.LogError("StateManager is not assigned.");
                 }
             }
             else
             {
                 Debug.Log("Game Over! Waktu habis.");
+                if (stateManager != null)
+                {
+                    stateManager.SwitchToIdleState();
+                }
+                else
+                {
+                    Debug.LogError("StateManager is not assigned.");
+                }
             }
         }
 

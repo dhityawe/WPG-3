@@ -241,7 +241,7 @@ MonoBehaviour:
   leftContainer: {fileID: 2135305883}
   middleContainer: {fileID: 2083601035}
   rightContainer: {fileID: 1459254097}
-  scriptManager: {fileID: 872954212}
+  stateManager: {fileID: 162600795}
 --- !u!4 &77889357
 Transform:
   m_ObjectHideFlags: 0
@@ -301,6 +301,55 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.63983303, y: 3.7911391, z: -12.698119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &162600795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162600797}
+  - component: {fileID: 162600796}
+  m_Layer: 0
+  m_Name: State Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &162600796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162600795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54db9409a7f88324bb8711a2ab5b4e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelingPanel: {fileID: 2041336269}
+  gachaPanel: {fileID: 716347367}
+  uiPanel: {fileID: 1546243949}
+  reelingBaseScript: {fileID: 0}
+  gachaSystemScript: {fileID: 77889356}
+--- !u!4 &162600797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162600795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.080397, y: -3.7530854, z: -1.6642879}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -391,7 +440,7 @@ GameObject:
   - component: {fileID: 406074544}
   - component: {fileID: 406074546}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Rod
   m_TagString: Rod
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,7 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f6f0032f374f04c80f641ade477de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptManager: {fileID: 872954212}
+  stateManager: {fileID: 162600795}
 --- !u!4 &827071299
 Transform:
   m_ObjectHideFlags: 0
@@ -1725,7 +1774,6 @@ GameObject:
   - component: {fileID: 872954213}
   - component: {fileID: 872954215}
   - component: {fileID: 872954216}
-  - component: {fileID: 872954217}
   m_Layer: 0
   m_Name: Script Manager
   m_TagString: Untagged
@@ -1756,7 +1804,7 @@ MonoBehaviour:
   maxTime: 30
   timeText: {fileID: 948359145}
   backgroundImage: {fileID: 1110653064}
-  scriptManager: {fileID: 872954212}
+  stateManager: {fileID: 162600796}
   damageAreaImage: {fileID: 1055641682}
 --- !u!4 &872954214
 Transform:
@@ -1796,7 +1844,7 @@ MonoBehaviour:
   maxTime: 30
   timeText: {fileID: 948359145}
   backgroundImage: {fileID: 1504380798}
-  scriptManager: {fileID: 872954212}
+  stateManager: {fileID: 162600796}
   damageAreaImage1: {fileID: 1055641682}
   damageAreaImage2: {fileID: 1592304228}
 --- !u!114 &872954216
@@ -1822,27 +1870,12 @@ MonoBehaviour:
   maxTime: 30
   timeText: {fileID: 948359145}
   backgroundImage: {fileID: 1168757776}
-  scriptManager: {fileID: 872954212}
+  stateManager: {fileID: 162600796}
   damageAreaImage1: {fileID: 1055641682}
   damageAreaImage2: {fileID: 1592304228}
   damageAreaImage3: {fileID: 1387604387}
   normalSprite: {fileID: 21300000, guid: dfb0efa52f255e04e976ce811fa6b03f, type: 3}
   invertedSprite: {fileID: 21300000, guid: 0bc21dce4dcde9049889f56650a540a2, type: 3}
---- !u!114 &872954217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872954212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2410cce6f726216448708de2f377666c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reelingPanel: {fileID: 2041336269}
-  gachaPanel: {fileID: 716347367}
-  gachaSystemScript: {fileID: 77889356}
 --- !u!1001 &906181708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4601,3 +4634,4 @@ SceneRoots:
   - {fileID: 1043360260}
   - {fileID: 827071299}
   - {fileID: 1628807394}
+  - {fileID: 162600797}
