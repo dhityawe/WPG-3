@@ -7,8 +7,15 @@ namespace MG_Reeling {
         public override void Enter() {
             stateManager.reelingPanel.SetActive(false);
             stateManager.gachaPanel.SetActive(false);
-            stateManager.reelingBaseScript.BackgroundImage.gameObject.SetActive(false);
-            stateManager.reelingBaseScript.DeactivateAllDamageAreas();
+
+            if (stateManager.CurrentReelingBaseScript != null) {
+                stateManager.CurrentReelingBaseScript.BackgroundImage.gameObject.SetActive(false);
+                stateManager.CurrentReelingBaseScript.DeactivateAllDamageAreas();
+                stateManager.CurrentReelingBaseScript.enabled = false; // Disable the current reeling script
+            } else {
+                Debug.LogError("currentReelingBaseScript is null.");
+            }
+
             stateManager.uiPanel.SetActive(true);
         }
 

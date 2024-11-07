@@ -2,13 +2,17 @@ using UnityEngine;
 
 namespace MG_Reeling {
     public class ReelingState : State {
-        public ReelingState(StateManager stateManager) : base(stateManager) { }
+        private reelingBase reelingBaseScript;
+
+        public ReelingState(StateManager stateManager, reelingBase reelingBaseScript) : base(stateManager) {
+            this.reelingBaseScript = reelingBaseScript;
+        }
 
         public override void Enter() {
             stateManager.reelingPanel.SetActive(true);
-            stateManager.reelingBaseScript.BackgroundImage.gameObject.SetActive(true);
-            stateManager.StartCoroutine(stateManager.reelingBaseScript.UpdateTimer());
-            stateManager.reelingBaseScript.PublicActivateRandomDamageAreas();
+            reelingBaseScript.BackgroundImage.gameObject.SetActive(true);
+            stateManager.StartCoroutine(reelingBaseScript.UpdateTimer());
+            reelingBaseScript.PublicActivateRandomDamageAreas();
             stateManager.uiPanel.SetActive(true);
         }
 
