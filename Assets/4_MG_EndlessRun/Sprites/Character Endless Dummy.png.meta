@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea67f8a592e9df349b536e9e75d53b43
+guid: 1f79b2f5146c1eb489193dc156309f0a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -110,97 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Move and Idle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 180
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 854db878ff30ce0499a99a7e1074c8c4
-      internalID: -755833381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Move and Idle_1
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 180
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 626da038edc2e2541984cec7068a808a
-      internalID: 1017537165
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Move and Idle_2
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 180
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98c290aed5e75ed4ba2106e0c04f4f3e
-      internalID: -455475509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Move and Idle_3
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 180
-        width: 320
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a967f9145af51c4f8aa2144086f0498
-      internalID: 1960690044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Move and Idle_4
+      name: Character Endless Dummy_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 180
+        width: 230
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43f8215d44153b34bbb68720d56799da
-      internalID: -1819873342
+      spriteID: c30ab65aaf6e26042a70a43c87b94656
+      internalID: -1257738412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move and Idle_5
+      name: Character Endless Dummy_1
       rect:
         serializedVersion: 2
-        x: 320
+        x: 230
         y: 0
-        width: 320
-        height: 180
+        width: 230
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd6f2c826dfc87e45946763883ffc5a0
-      internalID: 1180316739
+      spriteID: 18cde960b0fca3d409eb5f6be6f5f955
+      internalID: -1569634008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move and Idle_6
+      name: Character Endless Dummy_2
       rect:
         serializedVersion: 2
-        x: 640
+        x: 460
         y: 0
-        width: 320
-        height: 180
+        width: 230
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b64d812f15fae3a49a060ffa11378242
-      internalID: 713369682
+      spriteID: 47594435a418e7b43a96815a450e260c
+      internalID: -1332506587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move and Idle_7
+      name: Character Endless Dummy_3
       rect:
         serializedVersion: 2
-        x: 960
+        x: 690
         y: 0
-        width: 320
-        height: 180
+        width: 230
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f98e67bb52f71a47b4612ceb377c1f3
-      internalID: 1666399403
+      spriteID: 5872a71da056481439c1fea27814dc0d
+      internalID: -1401597781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move and Idle_8
+      name: Character Endless Dummy_4
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 920
         y: 0
-        width: 320
-        height: 180
+        width: 230
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,8 +208,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7f6bd9a8ff4980489d4f091677ab295
-      internalID: -1119024803
+      spriteID: 6a41ab0bf26dce045a271ca6e225a53e
+      internalID: -1379949466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Endless Dummy_5
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 0
+        width: 230
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c2a1aa8460bd5749b72a40efb962538
+      internalID: -561104406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Endless Dummy_6
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 0
+        width: 230
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f8164858f76244a9cf076763cc3e2b
+      internalID: -1235840333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Endless Dummy_7
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 0
+        width: 230
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65fba5efda317d24dbda44bcb8cb5b6b
+      internalID: 357473001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Endless Dummy_8
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 0
+        width: 230
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be38921a9971f3a4b8a43d69f52127ca
+      internalID: -509007698
       vertices: []
       indices: 
       edges: []
@@ -301,7 +301,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4d1998ba5e227704c980d29810c6fa0c
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -309,15 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Move and Idle_0: -755833381
-      Move and Idle_1: 1017537165
-      Move and Idle_2: -455475509
-      Move and Idle_3: 1960690044
-      Move and Idle_4: -1819873342
-      Move and Idle_5: 1180316739
-      Move and Idle_6: 713369682
-      Move and Idle_7: 1666399403
-      Move and Idle_8: -1119024803
+      Character Endless Dummy_0: -1257738412
+      Character Endless Dummy_1: -1569634008
+      Character Endless Dummy_2: -1332506587
+      Character Endless Dummy_3: -1401597781
+      Character Endless Dummy_4: -1379949466
+      Character Endless Dummy_5: -561104406
+      Character Endless Dummy_6: -1235840333
+      Character Endless Dummy_7: 357473001
+      Character Endless Dummy_8: -509007698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

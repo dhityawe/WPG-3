@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d573a7409a2cfbe4fa73feb3800cb8df
+guid: b02fbc2201233f74a9020b623d12d0ff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,97 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_0
+      name: Ship dummy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9d1e44d61e8084290b140ec98ccdcb
+      internalID: -921775161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship dummy_1
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bfa7c6d1225b564f979184720eed569
+      internalID: -213581710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship dummy_2
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ae529e55720f743a3b99bb3348fcbe
+      internalID: -553734944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship dummy_3
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ee70f0fa6fa52a4f8a0260df2416b19
+      internalID: 1817749473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship dummy_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 220
-        height: 220
+        width: 140
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4bf315ea4ca8b8418fd8bb1a7c62ad4
-      internalID: -1761709452
+      spriteID: 0366d54a7fe547d4ea7963ff5e7c9a6a
+      internalID: 2135573524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_1
+      name: Ship dummy_5
       rect:
         serializedVersion: 2
-        x: 220
+        x: 140
         y: 0
-        width: 220
-        height: 220
+        width: 140
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 087370b86f4051f4fba136bb3d6911ec
-      internalID: -834729186
+      spriteID: b320159d71e64874e8235fb14be16218
+      internalID: -670948422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2
+      name: Ship dummy_6
       rect:
         serializedVersion: 2
-        x: 440
+        x: 280
         y: 0
-        width: 220
-        height: 220
+        width: 140
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ce4a069000feaa45a632e8eff4969f5
-      internalID: -829496669
+      spriteID: 0a864e3110e4ca248a1ac1a36518f468
+      internalID: -1763641577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_3
+      name: Ship dummy_7
       rect:
         serializedVersion: 2
-        x: 660
+        x: 420
         y: 0
-        width: 220
-        height: 220
+        width: 140
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60697ee7ce0e66d4195526826480a63f
-      internalID: 1882781801
+      spriteID: 9f3b7317b6ffa5e47b07f9d5d372a457
+      internalID: -1560943120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_4
+      name: Ship dummy_8
       rect:
         serializedVersion: 2
-        x: 880
+        x: 560
         y: 0
-        width: 220
-        height: 220
+        width: 140
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,155 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a07c7532d5ce9047b60f2736994c2b5
-      internalID: -1672495390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_5
-      rect:
-        serializedVersion: 2
-        x: 1100
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8299d8aef0169d4184eb7905643b4a3
-      internalID: 911450089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_6
-      rect:
-        serializedVersion: 2
-        x: 1320
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 450d6b240220634449a9a591dda9a257
-      internalID: -1070196387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_7
-      rect:
-        serializedVersion: 2
-        x: 1540
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccc8b2fb3220fa24896e8120f255cf6d
-      internalID: -2064138048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_8
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a0c2d1c70078b1479037589969bfd98
-      internalID: -110311891
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_9
-      rect:
-        serializedVersion: 2
-        x: 1980
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 697ddd741d903cb419f45e3c7ac3a20e
-      internalID: -1943847347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_10
-      rect:
-        serializedVersion: 2
-        x: 2200
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5aefe1036dca22c4392a758069fa72aa
-      internalID: 2111633774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_11
-      rect:
-        serializedVersion: 2
-        x: 2420
-        y: 0
-        width: 220
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f363d259ec8cebd4f8b9bba1411a8d96
-      internalID: -1188368054
+      spriteID: 75792eb14350dba438559fdc549cb9a5
+      internalID: 1774800213
       vertices: []
       indices: 
       edges: []
@@ -364,7 +301,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 87446e51d4fcc774fab9ccdba000783e
+    spriteID: a02a38df7bbdf794f828b8e9028f9b2d
     internalID: 0
     vertices: []
     indices: 
@@ -372,18 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_0: -1761709452
-      Enemy_1: -834729186
-      Enemy_10: 2111633774
-      Enemy_11: -1188368054
-      Enemy_2: -829496669
-      Enemy_3: 1882781801
-      Enemy_4: -1672495390
-      Enemy_5: 911450089
-      Enemy_6: -1070196387
-      Enemy_7: -2064138048
-      Enemy_8: -110311891
-      Enemy_9: -1943847347
+      Ship dummy_0: -921775161
+      Ship dummy_1: -213581710
+      Ship dummy_2: -553734944
+      Ship dummy_3: 1817749473
+      Ship dummy_4: 2135573524
+      Ship dummy_5: -670948422
+      Ship dummy_6: -1763641577
+      Ship dummy_7: -1560943120
+      Ship dummy_8: 1774800213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
