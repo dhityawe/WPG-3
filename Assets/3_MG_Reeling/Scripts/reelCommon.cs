@@ -54,7 +54,6 @@ namespace MG_Reeling {
             StartCoroutine(ReactivateDamageAreaAfterDelay());
         }
 
-
         protected override List<int> GetActiveDamageAreas()
         {
             return new List<int> { activeDamageArea };

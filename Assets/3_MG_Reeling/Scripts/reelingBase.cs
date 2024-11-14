@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using TMPro;
 
 namespace MG_Reeling {
-    public abstract class reelingBase : MonoBehaviour
-    {
+    public abstract class reelingBase : MonoBehaviour {
         public GameObject jarum;
         public float rotationSpeed = 100f;
         public float damagePerSecond = 10f;
@@ -19,10 +18,7 @@ namespace MG_Reeling {
         public Slider timeSlider;
         public float maxTime = 60f;
         public TMP_Text timeText; // Change Text to TMP_Text
-        public Image backgroundImage;
-        public GameObject reelingPanel;
-        public GameObject gachaPanel;
-
+        public Image backgroundImage; // Background image
         protected Image jarumImage;
         protected float fishHP;
         protected Color originalColor;
@@ -32,51 +28,48 @@ namespace MG_Reeling {
         protected bool hasDamaged;
         private bool gameEnded = false; // Add this line
 
+        public Image BackgroundImage => backgroundImage; // Public property to access backgroundImage
+
         protected abstract void ActivateRandomDamageAreas();
         protected abstract void SetDamageAreaImage(Image damageAreaImage, int areaIndex);
         protected abstract (float startAngle, float endAngle) GetAreaAngles(int index);
         protected abstract KeyCode[] GetKeyCodeForArea(int index);
         protected abstract void DeactivateDamageArea(int index);
+        protected abstract List<int> GetActiveDamageAreas();
+        public StateManager stateManager; // Add reference to StateManager
 
-        void Start()
-        {
-            reelingPanel.SetActive(true);
-            backgroundImage.gameObject.SetActive(true);
+        void Start() {
+            Initialize();
+        }
 
+        public void Initialize() {
             jarumImage = jarum.GetComponent<Image>();
-            if (jarumImage == null)
-            {
+            if (jarumImage == null) {
                 Debug.LogError("Tidak ada komponen Image pada GameObject jarum.");
                 return;
             }
             originalColor = jarumImage.color;
 
             fishHP = maxFishHP;
-            if (fishHPSlider != null)
-            {
+            if (fishHPSlider != null) {
                 fishHPSlider.maxValue = maxFishHP;
                 fishHPSlider.value = fishHP;
             }
 
-            if (timeSlider != null)
-            {
+            if (timeSlider != null) {
                 timeSlider.maxValue = maxTime;
                 timeSlider.value = maxTime;
                 originalSliderColor = timeSlider.fillRect.GetComponent<Image>().color;
             }
 
-            currentTime = maxTime;
-            if (timeText != null)
-            {
+            currentTime = maxTime; // Pastikan currentTime diinisialisasi di sini
+            Debug.Log("Timer initialized with time: " + currentTime);
+            if (timeText != null) {
                 timeText.text = FormatTime(currentTime);
             }
-
-            StartCoroutine(UpdateTimer());
-            ActivateRandomDamageAreas();
         }
 
-        void Update()
-        {
+        void Update() {
             jarum.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
 
             Vector3 currentRotation = jarum.transform.eulerAngles;
@@ -87,59 +80,46 @@ namespace MG_Reeling {
             bool isInDamageArea = false;
             int damageAreaIndex = -1;
 
-            for (int i = 0; i < GetActiveDamageAreas().Count; i++)
-            {
+            for (int i = 0; i < GetActiveDamageAreas().Count; i++) {
                 var area = GetAreaAngles(GetActiveDamageAreas()[i]);
-                if (IsAngleInRange(currentAngle, area.startAngle, area.endAngle))
-                {
+                if (IsAngleInRange(currentAngle, area.startAngle, area.endAngle)) {
                     isInDamageArea = true;
                     damageAreaIndex = i;
                     break;
                 }
             }
 
-            if (Input.anyKeyDown)
-            {
+            if (Input.anyKeyDown) {
                 bool correctKeyPressed = false;
                 bool incorrectKeyPressed = false;
 
-                if (isInDamageArea)
-                {
+                if (isInDamageArea) {
                     correctKeyPressed = IsCorrectKeyCombinationPressed(GetActiveDamageAreas()[damageAreaIndex]);
                     incorrectKeyPressed = IsAnyIncorrectKeyPressed(GetActiveDamageAreas()[damageAreaIndex]);
-                }
-                else
-                {
+                } else {
                     incorrectKeyPressed = IsAnyKeyPressed();
                 }
 
-                if (correctKeyPressed && !hasDamaged)
-                {
+                if (correctKeyPressed && !hasDamaged) {
                     fishHP -= damagePerSecond;
                     fishHP = Mathf.Max(fishHP, 0);
-                    if (fishHPSlider != null)
-                    {
+                    if (fishHPSlider != null) {
                         fishHPSlider.value = fishHP;
                     }
 
                     hasDamaged = true;
                     DeactivateDamageArea(damageAreaIndex);
                     StartCoroutine(ChangeNeedleColorBriefly());
-                    if (GetActiveDamageAreas().Count == 0)
-                    {
+                    if (GetActiveDamageAreas().Count == 0) {
                         StartCoroutine(ReactivateDamageAreaAfterDelay());
                     }
-                }
-                else if (incorrectKeyPressed)
-                {
+                } else if (incorrectKeyPressed) {
                     currentTime -= 3f;
                     currentTime = Mathf.Max(currentTime, 0);
-                    if (timeSlider != null)
-                    {
+                    if (timeSlider != null) {
                         timeSlider.value = currentTime;
                     }
-                    if (timeText != null)
-                    {
+                    if (timeText != null) {
                         timeText.text = FormatTime(currentTime);
                     }
                     StartCoroutine(ShowErrorEffect());
@@ -147,112 +127,97 @@ namespace MG_Reeling {
                 }
             }
 
-            if (!isInDamageArea)
-            {
+            if (!isInDamageArea) {
                 hasDamaged = false;
             }
 
-            if (fishHP <= 0 || currentTime <= 0)
-            {
+            if (fishHP <= 0 || currentTime <= 0) {
                 StartCoroutine(StopGame());
             }
         }
 
-        private bool IsCorrectKeyCombinationPressed(int activeDamageArea)
-        {
+        private bool IsCorrectKeyCombinationPressed(int activeDamageArea) {
             KeyCode[] correctKeys = GetKeyCodeForArea(activeDamageArea);
             return correctKeys.All(key => Input.GetKey(key));
         }
 
-        private bool IsAnyIncorrectKeyPressed(int activeDamageArea)
-        {
+        private bool IsAnyIncorrectKeyPressed(int activeDamageArea) {
             KeyCode[] correctKeys = GetKeyCodeForArea(activeDamageArea);
             KeyCode[] allKeys = { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow };
             return allKeys.Any(key => Input.GetKeyDown(key) && !correctKeys.Contains(key)) || correctKeys.Any(key => !Input.GetKey(key) && Input.GetKeyDown(key));
         }
 
-        private bool IsAnyKeyPressed()
-        {
+        private bool IsAnyKeyPressed() {
             KeyCode[] allKeys = { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow };
             return allKeys.Any(key => Input.GetKeyDown(key));
         }
 
-        private IEnumerator UpdateTimer()
-        {
-            while (currentTime > 0)
-            {
+        public IEnumerator UpdateTimer() {
+            Debug.Log("Starting timer with time: " + currentTime);
+            while (currentTime > 0) {
                 currentTime -= Time.deltaTime;
                 currentTime = Mathf.Max(currentTime, 0);
 
-                if (timeSlider != null)
-                {
+                if (timeSlider != null) {
                     timeSlider.value = currentTime;
                 }
 
-                if (timeText != null)
-                {
+                if (timeText != null) {
                     timeText.text = FormatTime(currentTime);
                 }
 
                 yield return null;
             }
+
+            // Call StopGame when timer reaches 0
+            Debug.Log("Timer reached 0, stopping game.");
+            StartCoroutine(StopGame());
         }
 
-        private string FormatTime(float time)
-        {
+        private string FormatTime(float time) {
             int minutes = Mathf.FloorToInt(time / 60F);
             int seconds = Mathf.FloorToInt(time - minutes * 60);
             return string.Format("{0:0}:{1:00}", minutes, seconds);
         }
 
-        private bool IsAngleInRange(float angle, float startAngle, float endAngle)
-        {
+        private bool IsAngleInRange(float angle, float startAngle, float endAngle) {
             return startAngle < endAngle ? angle >= startAngle && angle <= endAngle : angle >= startAngle || angle <= endAngle;
         }
 
-        public IEnumerator ReactivateDamageAreaAfterDelay()
-        {
+        public IEnumerator ReactivateDamageAreaAfterDelay() {
             yield return new WaitForSeconds(delayBeforeReactivatingDamageArea);
             ActivateRandomDamageAreas();
         }
 
-        private IEnumerator ChangeNeedleColorBriefly()
-        {
-            if (jarumImage != null)
-            {
+        private IEnumerator ChangeNeedleColorBriefly() {
+            if (jarumImage != null) {
                 jarumImage.color = Color.red;
             }
 
             yield return new WaitForSeconds(damageColorDuration);
 
-            if (jarumImage != null)
-            {
+            if (jarumImage != null) {
                 jarumImage.color = originalColor;
             }
         }
 
-        private IEnumerator ShowErrorEffect()
-        {
-            if (isShaking)
-            {
+        private IEnumerator ShowErrorEffect() {
+            if (isShaking) {
                 yield break;
             }
 
             isShaking = true;
 
-            if (timeSlider != null)
-            {
+            if (timeSlider != null) {
                 var sliderImage = timeSlider.fillRect.GetComponent<Image>();
                 sliderImage.color = Color.red;
             }
 
-            if (jarumImage != null)
-            {
+            if (jarumImage != null) {
                 jarumImage.color = Color.red;
             }
 
-            if (backgroundImage != null)
-            {
+            if (backgroundImage != null) {
                 backgroundImage.color = Color.red;
             }
 
@@ -265,8 +230,7 @@ namespace MG_Reeling {
             float shakeMagnitude = 5f;
             float elapsed = 0f;
 
-            while (elapsed < shakeDuration)
-            {
+            while (elapsed < shakeDuration) {
                 float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
                 float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
 
@@ -286,43 +250,52 @@ namespace MG_Reeling {
             backgroundImage.transform.localPosition = originalBackgroundPosition;
 
             yield return new WaitForSeconds(0.5f);
-            if (timeSlider != null)
-            {
+            if (timeSlider != null) {
                 var sliderImage = timeSlider.fillRect.GetComponent<Image>();
                 sliderImage.color = originalSliderColor;
             }
 
-            if (jarumImage != null)
-            {
+            if (jarumImage != null) {
                 jarumImage.color = originalColor;
             }
 
-            if (backgroundImage != null)
-            {
+            if (backgroundImage != null) {
                 backgroundImage.color = Color.white;
             }
 
             isShaking = false;
         }
 
-        protected abstract List<int> GetActiveDamageAreas();
+        private IEnumerator StopGame() {
+            if (gameEnded) yield break;
 
-        private IEnumerator StopGame()
-        {
-            if (gameEnded) yield break; // Add this line
+            gameEnded = true;
 
-            gameEnded = true; // Add this line
-
-            if (fishHP <= 0)
-            {
+            if (fishHP <= 0) {
                 Debug.Log("Game Over! Kamu berhasil menangkap ikan.");
-                reelingPanel.SetActive(false);
-                yield return new WaitForSeconds(0.5f);
-                gachaPanel.SetActive(true);
-            }
-            else
-            {
+                if (stateManager != null) {
+                    Debug.Log("Switching to Gacha State...");
+                    stateManager.SwitchToGachaState();
+                } else {
+                    Debug.LogError("StateManager is not assigned.");
+                }
+            } else {
                 Debug.Log("Game Over! Waktu habis.");
+                if (stateManager != null) {
+                    stateManager.SwitchToIdleState();
+                } else {
+                    Debug.LogError("StateManager is not assigned.");
+                }
+            }
+        }
+
+        public void PublicActivateRandomDamageAreas() {
+            ActivateRandomDamageAreas();
+        }
+
+        public void DeactivateAllDamageAreas() {
+            foreach (var area in GetActiveDamageAreas()) {
+                DeactivateDamageArea(area);
             }
         }
     }

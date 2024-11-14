@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace MG_Reeling {

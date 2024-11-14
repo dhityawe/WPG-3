@@ -19,26 +19,12 @@ namespace MG_Reeling {
             playerBody = transform.parent;
 
             // Load initial rotation if it exists
-            if (PlayerPrefs.HasKey("CameraRotX") && PlayerPrefs.HasKey("CameraRotY") && PlayerPrefs.HasKey("CameraRotZ") && PlayerPrefs.HasKey("CameraRotW"))
-            {
-                float camRotX = PlayerPrefs.GetFloat("CameraRotX");
-                float camRotY = PlayerPrefs.GetFloat("CameraRotY");
-                float camRotZ = PlayerPrefs.GetFloat("CameraRotZ");
-                float camRotW = PlayerPrefs.GetFloat("CameraRotW");
-                Quaternion initialRotation = new Quaternion(camRotX, camRotY, camRotZ, camRotW);
-                transform.localRotation = initialRotation;
+            PositionRotationManager.LoadPlayerPositionAndRotation(playerBody.gameObject, GetComponent<Camera>());
 
-                // Extract the xRotation from the loaded rotation
-                Vector3 eulerAngles = initialRotation.eulerAngles;
-                xRotation = eulerAngles.x;
-
-                // Load player rotation if it exists
-                if (PlayerPrefs.HasKey("PlayerRotY"))
-                {
-                    float playerRotY = PlayerPrefs.GetFloat("PlayerRotY");
-                    playerBody.localRotation = Quaternion.Euler(0.0f, playerRotY, 0.0f);
-                }
-            }
+            // Extract the xRotation from the loaded rotation
+            Quaternion initialRotation = transform.localRotation;
+            Vector3 eulerAngles = initialRotation.eulerAngles;
+            xRotation = eulerAngles.x;
         }
 
         // Update is called once per frame
