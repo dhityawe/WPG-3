@@ -1,14 +1,13 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace MG_Reeling {
-    public class startFishing : MonoBehaviour
-    {
+    public class startFishing : MonoBehaviour {
         private bool isPlayerInCollider = false;
         private Animator uiAnimator;
 
-        void Start()
-        {
+        void Start() {
             // Cari UI dan ambil komponen Animator
             GameObject fishingUI = GameObject.FindGameObjectWithTag("Rod");
             if (fishingUI != null)
@@ -25,11 +24,8 @@ namespace MG_Reeling {
             }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (isPlayerInCollider && Input.GetKeyDown(KeyCode.E))
-            {
+        void Update() {
+            if (isPlayerInCollider && Input.GetKeyDown(KeyCode.E)) {
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
                 Camera mainCamera = Camera.main;
 
@@ -41,10 +37,8 @@ namespace MG_Reeling {
             }
         }
 
-        private IEnumerator PlayFishingAnimationAndLoadScene()
-        {
-            if (uiAnimator != null)
-            {
+        private IEnumerator PlayFishingAnimationAndLoadScene() {
+            if (uiAnimator != null) {
                 // Mainkan animasi melempar joran pancing
                 uiAnimator.SetTrigger("ThrowFishingRod");
 
@@ -60,34 +54,28 @@ namespace MG_Reeling {
                 // Log untuk memastikan animasi selesai
                 Debug.Log("Animasi selesai, berpindah scene...");
 
+                // Simpan status perpindahan scene
+                PlayerPrefs.SetInt("HasVisitedEndlessRun", 1);
+
                 // Load new scene
-                if (SceneLoader.Instance != null)
-                {
+                if (SceneLoader.Instance != null) {
                     SceneLoader.Instance._MGEndlessRun();
-                }
-                else
-                {
+                } else {
                     Debug.LogError("SceneLoader tidak ditemukan!");
                 }
-            }
-            else
-            {
+            } else {
                 Debug.LogError("uiAnimator is null!");
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Player")) {
                 isPlayerInCollider = true;
             }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
+        private void OnTriggerExit(Collider other) {
+            if (other.CompareTag("Player")) {
                 isPlayerInCollider = false;
             }
         }

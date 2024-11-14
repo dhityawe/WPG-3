@@ -2475,6 +2475,7 @@ GameObject:
   - component: {fileID: 1317081093}
   - component: {fileID: 1317081091}
   - component: {fileID: 1317081089}
+  - component: {fileID: 1317081095}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Enemy
@@ -2501,8 +2502,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.875, y: 1.5, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.8219379, y: 1.3156661, z: 0.2}
+  m_Center: {x: 0.02653104, y: -0.09216696, z: 0}
 --- !u!212 &1317081090
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2544,7 +2545,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6d4df2dfc0f27a48ad3a01d0a6d3330, type: 3}
+  m_Sprite: {fileID: -1761709452, guid: d573a7409a2cfbe4fa73feb3800cb8df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2638,6 +2639,27 @@ MonoBehaviour:
   enemyPosition: {fileID: 0}
   enemyBulletPrefab: {fileID: 0}
   fishBase: {fileID: 11400000, guid: 743fdbf0b9bfb3d468307ef5e9748b4f, type: 2}
+--- !u!95 &1317081095
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317081088}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: edd767ceeb6a82c498fa13fef1cf203f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1366363330
 GameObject:
   m_ObjectHideFlags: 0

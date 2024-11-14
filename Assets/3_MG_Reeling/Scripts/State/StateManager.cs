@@ -27,7 +27,12 @@ namespace MG_Reeling {
             reelUncommonScript.enabled = false;
             reelAnomalyScript.enabled = false;
 
-            SetState(new IdleState(this));
+            // Periksa status perpindahan scene
+            if (PlayerPrefs.GetInt("HasVisitedEndlessRun", 0) == 1) {
+                SwitchToReelingState();
+            } else {
+                SetState(new IdleState(this));
+            }
         }
 
         void Update() {

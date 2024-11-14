@@ -14,6 +14,9 @@ namespace MG_Reeling {
             stateManager.StartCoroutine(reelingBaseScript.UpdateTimer());
             reelingBaseScript.PublicActivateRandomDamageAreas();
             stateManager.uiPanel.SetActive(true);
+
+            // Hapus status perpindahan scene
+            PlayerPrefs.DeleteKey("HasVisitedEndlessRun");
         }
 
         public override void Update() {
